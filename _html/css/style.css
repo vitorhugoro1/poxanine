@@ -1,0 +1,77 @@
+/*
+	Header
+*/
+
+header {
+	text-align: center;
+	font-size: 4em;
+	line-height: 4em;
+	font-family: 'Amatic SC', sans-serif;
+	font-weight: bold;
+}
+
+/*
+	Post
+*/
+.post h2 {
+	text-align: center;
+	font-weight: bold;
+	font-size: 2.2em;
+	line-height: 1em;
+	font-family: 'Amatic SC', sans-serif;
+	font-style: italic;
+	margin-bottom: 1rem;
+}
+
+.post p {
+	font-family: 'Raleway', sans-serif;
+	font-size: 1em;
+	clear: both;
+}
+
+.post .date {
+	width: 100%;
+	text-align: center;
+}
+
+.post .author > .title {
+	float: right;
+	text-align: center;
+	font-style: italic;
+}
+
+.post .share {
+	float: right;
+	display: block;
+	clear: both;
+}
+
+.post .categories > span {
+	font-weight: bold;
+}
+
+/*
+	Sidebar
+*/
+
+.sidebar h3 {
+	font-size: 2em;
+	font-weight: bold;
+	text-align: center;
+	font-family: 'Amatic SC', sans-serif;
+	border-bottom: 1px solid #333;
+	border-bottom-height: 85%;
+}
+
+.sidebar p {
+	text-align: center;
+	font-size: 12px;
+}
+
+/*
+	Footer
+*/
+
+.creative-commons {
+	width: 80px;
+}

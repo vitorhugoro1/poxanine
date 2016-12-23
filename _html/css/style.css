@@ -24,7 +24,8 @@ header {
 
 .post {
   clear: both;
-    padding-top: 20px;
+  padding-top: 20px;
+  background: #ffffff;
 }
 .post h2 {
   margin-bottom: 1rem;
@@ -86,6 +87,11 @@ header {
 /*
 	Sidebar
 */
+
+.sidebar {
+  background: #ffffff;
+  margin-top: 7px;
+}
 
 .sidebar h3 {
   font-size: 2em;

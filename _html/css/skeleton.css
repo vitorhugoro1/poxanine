@@ -453,7 +453,8 @@ there.
 /* Larger than tablet */
 @media (max-width: 768px) {
   .three.columns,
-  .nine.columns{
+  .nine.columns,
+  .one-half.column {
     width:100%;
   }
 
@@ -466,6 +467,7 @@ there.
   .direitos {
     text-align: center !important;
     float: none;
+    font-size: 16px;
   }
 }
 

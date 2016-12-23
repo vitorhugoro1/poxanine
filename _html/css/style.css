@@ -24,6 +24,7 @@ header {
 
 .post {
   clear: both;
+    padding-top: 20px;
 }
 .post h2 {
   margin-bottom: 1rem;
@@ -106,6 +107,7 @@ header {
   width: 100%;
 }
 .about p {
+    margin-top: 1em;
   clear: both;
   text-align: center;
   margin-bottom: 1em;
@@ -143,8 +145,11 @@ header {
   padding: 0;
   margin: 0;
 }
+.blogroll-list {
+    margin:0 auto;
+}
 .blogroll-item {
-  max-width: 75px;
+  max-width: calc(100%/3.5);
   display: -moz-inline-stack;
   display: inline-block;
   vertical-align: top;
@@ -154,7 +159,7 @@ header {
   width: 100%;
 }
 .blogroll-hide-text {
-  visibility: hidden;
+    display: none;
 }
 
 /**
@@ -187,6 +192,39 @@ header {
 
 .pagination {
 	clear: both;
+	width: 100%;
+}
+
+.pagination-list {
+	margin: 0 auto;
+	width: 250px;
+}
+
+.pagination-item {
+	display: inline-block;
+    margin:1rem 0.5rem 1rem 0.5rem;
+}
+
+.pagination-link {
+	padding: 5px 10px;
+    margin: 0 auto;
+	border: 1px solid #333;
+	vertical-align: middle;
+	text-align: center;
+    font-weight:bold;
+	display: block;
+	color: #000;
+}
+
+.pagination-link:hover {
+	color: #b3b3b3;
+	border-color: #b3b3b3;
+}
+
+.pagination-link.active {
+    cursor: pointer;
+    color: #b3b3b3;
+    border-color: #b3b3b3;
 }
 
 /*
@@ -195,4 +233,11 @@ header {
 
 .creative-commons {
   width: 80px;
+}
+
+.direitos {
+    height:30px;
+    text-align: right;
+    line-height: 30px;
+    vertical-align: middle;
 }

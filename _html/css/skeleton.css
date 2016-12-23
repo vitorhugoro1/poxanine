@@ -406,10 +406,68 @@ there.
 @media (min-width: 400px) {}
 
 /* Larger than phablet (also point when grid becomes active) */
-@media (min-width: 550px) {}
+@media (max-width: 550px) {
+  /*
+    Post
+   */
+  .post h2 {
+    font-size: 3em;
+  }
+
+  .post .date {
+    font-size: 1.1em;
+  }
+
+  .post p {
+    font-size: 1.1em;
+  }
+
+  .post .categories {
+    font-size: 1.5em;
+  }
+
+  .post .author > .title {
+    line-height: 40px;
+  }
+
+  /*
+    About Me
+   */
+
+  .about p {
+    font-size: 1em !important;
+  }
+
+  /* Footer */
+  .creative-commons {
+    margin:0 auto;
+    display: block;
+  }
+
+  .direitos {
+    text-align: center !important;
+    float: none;
+  }
+}
 
 /* Larger than tablet */
-@media (min-width: 750px) {}
+@media (max-width: 768px) {
+  .three.columns,
+  .nine.columns{
+    width:100%;
+  }
+
+  /* Footer */
+  .creative-commons {
+    margin:0 auto;
+    display: block;
+  }
+
+  .direitos {
+    text-align: center !important;
+    float: none;
+  }
+}
 
 /* Larger than desktop */
 @media (min-width: 1000px) {}

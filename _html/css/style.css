@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Baloo+Thambi|Tinos');
+@import url('font-awesome.min.css');
 
 /**
  * Fixes
@@ -379,3 +380,72 @@ a {
   transition: .7s;
 }
 
+.comment-item {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.comment-item .author {
+  font-weight: bold;
+}
+
+.comment-item .comment-text {
+  margin-left: 5px;
+}
+
+/**
+ * Compartilhar
+ */
+
+.facebook:before {
+  content:'\f09a';
+  font-family: 'FontAwesome';
+  margin-right: 3px;
+}
+
+.facebook {
+  color: #fff;
+  background: #3b5998;
+  font-size: 12px;
+  display: inline-block;
+  font-family: 'Tinos', sans-serif;
+  font-weight: bold;
+  padding: 2px 5px;
+}
+
+.twitter:before {
+  content: '\f099';
+  font-family: 'FontAwesome';
+  margin-right: 3px;
+}
+
+.twitter {
+  color: #fff;
+  background: #1da1f2;
+  display: inline-block;
+  font-size: 12px;
+  font-family: 'Tinos', serif;
+  font-weight: bold;
+  padding: 2px 5px;
+}
+
+.pinterest:before {
+  content: '\f231';
+  font-family: 'FontAwesome';
+  margin-right: 3px;
+}
+
+.pinterest {
+  color: #fff;
+  background: #bd081c;
+  display: inline-block;
+  font-size: 12px;
+  font-family: 'Tinos', sans-serif;
+  font-weight: bold;
+  padding: 2px 5px;
+}
+
+.twitter:hover, .facebook:hover, .pinterest:hover {
+  opacity: 0.9;
+  color: #fff;
+}

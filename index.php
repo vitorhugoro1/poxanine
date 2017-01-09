@@ -7,7 +7,6 @@
 
       <div class="post">
         <header>
-
           <h2><a href="<?php the_permalink() ?>"><?php the_title() ?></a></h2>
           <div class="info">
             <?php the_category(', ') ?> - <?php the_date( 'd &#149; m &#149; Y' ) ?> - <?php comments_number('Sem comentários', '1 comentário', '% comentários') ?>
@@ -19,7 +18,6 @@
         <article>
           <?php if($first): ?>
             <?php the_content() ?>
-            <?php $first = false; ?>
           <?php else: ?>
             <?php the_excerpt() ?>
           <?php endif; ?>
@@ -28,9 +26,12 @@
           <div class="post-tags">
             <?php the_tags('') ?>
           </div>
+        <?php if(!$first) : ?>
           <a href="<?php the_permalink() ?>" class="ver-mais">Ver mais +</a>
+        <?php endif ?>
         </footer>
       </div>
+      <?php $first = false; ?>
 
   	<?php endwhile; ?>
       <?php vhr_paginate() ?>

@@ -11,6 +11,14 @@
 	<div class="container">
 		<div class="row">
 			<header class="topo">
-				<a href="<?php echo home_url() ?>"><?php bloginfo('title') ?></a>
+				<div class="moduleAnimationShock">
+			      <div class="hd"></div>
+			      <div class="bd">		      
+					<a href="<?php echo home_url() ?>">
+						<?php echo '<img src="' .get_template_directory_uri() . '/img/logo.png' . '" class="logo">'; ?>
+					</a>
+			      </div>
+			      <div class="ft"></div>
+			    </div>
 			</header>
 		</div>

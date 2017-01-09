@@ -449,3 +449,26 @@ a {
   opacity: 0.9;
   color: #fff;
 }
+
+/**
+ * Widget posts recentes
+ */
+
+.recent-posts img {
+  width: 100%;
+}
+
+.recent-posts-list {
+  display: block;
+  list-style: none;
+}
+
+.recent-posts-item {
+  width: 100%;
+  border-bottom: 1px dotted #333;
+  margin-bottom: 10px;
+}
+
+.recent-posts-item .img-full {
+  width: 100%;
+}

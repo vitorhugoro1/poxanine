@@ -2,11 +2,14 @@
 @import url('font-awesome.min.css');
 
 /**
- * Fixes
- */
+* Fixes
+*/
 
 a {
   text-decoration: none;
+}
+.aligncenter {
+  width: 100% !important;
 }
 
 /*
@@ -21,6 +24,80 @@ a {
   font-weight: bold;
   color: #33C3F0;
 }
+.topo::after {
+  clear: both;
+}
+.menu-item {
+  display: inline-block;
+  position: relative;
+  padding: 1rem 1.5rem;
+}
+ul#menu-topo {
+  height: 40px;
+  border-bottom: 1px solid #333;
+}
+ul.sub-menu {
+  position: absolute;
+  left: 0;
+  margin: 0;
+}
+.menu-item a {
+  color: #333;
+}
+.moduleAnimationShock {
+  width: auto;
+  margin: 0 auto;
+  position: relative;
+  -webkit-transform-style: preserve-3d;
+  height: auto;
+  text-align: center;
+}
+.moduleAnimationShock .bd:hover {
+  position: relative;
+  width: auto;
+  height: auto;
+}
+.moduleAnimationShock .bd:hover {
+  animation-name: diagonal-slide;
+  animation-duration: 0.05s;
+  animation-iteration-count: 10;
+  animation-fill-mode: forwards;
+}
+@-webkit-keyframes diagonal-slide {
+  from {
+    top: 0;
+    left: 0;
+    animation-timing-function: linear;
+  }
+  20% {
+    top: -5px;
+    left: -5px;
+    animation-timing-function: linear;
+  }
+  40% {
+    top: 5px;
+    left: -5px;
+    animation-timing-function: linear;
+  }
+  60% {
+    top: 5px;
+    left: 5px;
+    animation-timing-function: linear;
+  }
+  80% {
+    top: -5px;
+    left: 5px;
+    animation-timing-function: linear;
+  }
+  to {
+    top: 0;
+    left: 0;
+    animation-timing-function: linear;
+  }
+}
+.logo:hover {
+  filter: grayscale();
+}
 
 /*
 	Post
@@ -34,8 +111,17 @@ a {
 .post h2 {
   margin-bottom: 1rem;
   border-bottom: 1px solid #333;
+  display: block;
+  text-align: center;
+  font-weight: bold;
+  font-size: 2em;
+  text-transform: uppercase;
+  color: #000;
+  text-decoration: none;
+  line-height: 1em;
+  font-family: 'Baloo Thambi', cursive;
 }
-.post h2 a  {
+.post h2 a {
   display: block;
   text-align: center;
   font-weight: bold;
@@ -52,34 +138,29 @@ a {
   width: 100%;
   filter: grayscale(80%);
 }
-.post article p {
+.post article {
   font-family: 'Tinos', serif;
   font-size: 0.9em;
   line-height: 1.7em;
   clear: both;
   margin-bottom: 0;
-  padding: 5px;
-}
-.post article, .post footer {
   padding: 7px;
 }
-
+.post footer {
+  padding: 7px;
+}
 .post .info {
   font-family: 'Baloo Thambi', cursive;
   line-height: 16px;
   text-align: center;
 }
-
 .post .info > a {
   color: #b3b3b3;
 }
-
 .post .info > a:hover {
   color: #33C3F0;
   transition: .7s;
 }
-
-
 .post .share {
   width: 100%;
   text-align: center;
@@ -104,13 +185,11 @@ a {
   font-weight: bold;
   font-size: 14px;
 }
-
 .post .post-tags > a:hover {
   color: #b3b3b3;
   border-color: #b3b3b3;
   transition: .7s;
 }
-
 .post .ver-mais {
   box-sizing: border-box;
   border: 1px solid #333;
@@ -135,7 +214,6 @@ a {
   background: #ffffff;
   margin-top: 7px;
 }
-
 .sidebar h3 {
   font-size: 1.5em;
   font-weight: bold;
@@ -158,7 +236,7 @@ a {
   width: 100%;
 }
 .about p {
-    margin-top: 1em;
+  margin-top: 1em;
   clear: both;
   text-align: center;
   margin-bottom: 1em;
@@ -188,7 +266,6 @@ a {
   margin: 0 auto;
   filter: grayscale(80%);
 }
-
 .about img:hover {
   filter: grayscale(0);
   transition: .7s;
@@ -203,7 +280,7 @@ a {
   margin: 0;
 }
 .blogroll-list {
-   padding: 5px;
+  padding: 5px;
 }
 .blogroll-item {
   max-width: calc(100%/3.7);
@@ -219,7 +296,6 @@ a {
   width: 100%;
   filter: grayscale(80%);
 }
-
 .blogroll img:hover {
   cursor: pointer;
   filter: grayscale(0);
@@ -260,7 +336,6 @@ a {
   border: 1px solid #b3b3b3;
   margin: 15px 3px;
 }
-
 #news-feed {
   margin: 20px auto;
   display: block;
@@ -268,16 +343,15 @@ a {
   border-radius: 0px;
   border-color: #b3b3b3;
 }
-
 .feed-btn {
-    display: block;
-    text-align: center;
-    font-family: 'Baloo Thambi', cursive;
-    color: #b3b3b3;
-    background: #fff;
-    width: 85px;
-    margin: 0 auto;
-    border: 1px solid #b3b3b3;
+  display: block;
+  text-align: center;
+  font-family: 'Baloo Thambi', cursive;
+  color: #b3b3b3;
+  background: #fff;
+  width: 85px;
+  margin: 0 auto;
+  border: 1px solid #b3b3b3;
 }
 
 /**
@@ -285,40 +359,40 @@ a {
  */
 
 .pagination {
-	clear: both;
-	width: 100%;
+  clear: both;
+  float: right;
+  position: relative;
+  left: -50%;
+  text-align: left;
 }
-
 .pagination-list {
-	margin: 0 auto;
-	width: 250px;
+  list-style: none;
+  position: relative;
+  left: 50%;
 }
-
 .pagination-item {
-	display: inline-block;
-  margin:1rem 0.5rem 1rem 0.5rem;
+  float: left;
+  position: relative;
+  margin: 1rem 0.5rem 1rem 0.5rem;
 }
-
 .pagination-link {
-	padding: 5px 10px;
+  padding: 5px 10px;
+  float: left;
   margin: 0 auto;
-	border: 1px solid #333;
-	vertical-align: middle;
-	text-align: center;
-  font-weight:bold;
-	display: block;
-	color: #000;
+  border: 1px solid #333;
+  text-align: center;
+  font-weight: bold;
+  color: #000;
+  white-space: nowrap;
 }
-
 .pagination-link:hover {
-	color: #b3b3b3;
-	border-color: #b3b3b3;
+  color: #b3b3b3;
+  border-color: #b3b3b3;
 }
-
 .pagination-link.active {
-    cursor: pointer;
-    color: #b3b3b3;
-    border-color: #b3b3b3;
+  cursor: pointer;
+  color: #b3b3b3;
+  border-color: #b3b3b3;
 }
 
 /*
@@ -329,11 +403,9 @@ a {
   margin-top: 15px;
   font-family: 'Baloo Thambi', cursive;
 }
-
 .creative-commons {
   width: 80px;
 }
-
 .direitos {
   height: 55px;
   text-align: right;
@@ -349,16 +421,14 @@ a {
   text-align: center;
   font-family: 'Baloo Thambi', cursive;
 }
-
 .comments h3 span {
-  background:  #fff;
+  background: #fff;
   padding: 0 15px;
   position: relative;
   z-index: 1;
 }
-
 .comments h3:before {
-  background:  #ddd;
+  background: #ddd;
   content: "";
   display: block;
   height: 1px;
@@ -366,29 +436,23 @@ a {
   top: 50%;
   width: 100%;
 }
-
 .comments h3:before {
   left: 0;
 }
-
-.comments form input[type=submit]{
+.comments form input[type=submit] {
   background-color: #b3b3b3;
   border-color: #b3b3b3;
 }
-
 .comments form input[type=submit]:hover {
   transition: .7s;
 }
-
 .comment-item {
   display: inline-block;
   margin-left: 10px;
 }
-
 .comment-item .author {
   font-weight: bold;
 }
-
 .comment-item .comment-text {
   margin-left: 5px;
 }
@@ -398,11 +462,10 @@ a {
  */
 
 .facebook:before {
-  content:'\f09a';
+  content: '\f09a';
   font-family: 'FontAwesome';
   margin-right: 3px;
 }
-
 .facebook {
   color: #fff;
   background: #3b5998;
@@ -412,13 +475,11 @@ a {
   font-weight: bold;
   padding: 2px 5px;
 }
-
 .twitter:before {
   content: '\f099';
   font-family: 'FontAwesome';
   margin-right: 3px;
 }
-
 .twitter {
   color: #fff;
   background: #1da1f2;
@@ -428,13 +489,11 @@ a {
   font-weight: bold;
   padding: 2px 5px;
 }
-
 .pinterest:before {
   content: '\f231';
   font-family: 'FontAwesome';
   margin-right: 3px;
 }
-
 .pinterest {
   color: #fff;
   background: #bd081c;
@@ -444,7 +503,6 @@ a {
   font-weight: bold;
   padding: 2px 5px;
 }
-
 .twitter:hover, .facebook:hover, .pinterest:hover {
   opacity: 0.9;
   color: #fff;
@@ -456,19 +514,75 @@ a {
 
 .recent-posts img {
   width: 100%;
+  filter: blur(2px) grayscale();
+  opacity: 0.5;
 }
-
+.recent-posts-item:hover img {
+  filter: grayscale(0) blur(2px);
+  transition: .7s;
+}
+.recent-posts-item:hover span {
+  color: #33C3F0;
+  transition: .7s;
+}
 .recent-posts-list {
   display: block;
   list-style: none;
 }
-
 .recent-posts-item {
   width: 100%;
-  border-bottom: 1px dotted #333;
   margin-bottom: 10px;
+  position: relative;
 }
-
 .recent-posts-item .img-full {
   width: 100%;
+}
+.recent-title {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  text-align: center;
+  width: 80%;
+  color: #333;
+  font-weight: bold;
+  font-size: 1.3em;
+}
+.bx-wrapper {
+  position: relative;
+}
+.bx-pager.bx-default-pager {
+  display: none;
+}
+.bx-pager-item {
+  display: inline-block;
+}
+.bx-controls-direction {
+  width: 100%;
+  position: absolute;
+}
+.bx-controls-direction .bx-prev {
+  float: left;
+  background: url(../img/next.png) no-repeat;
+  width: 16px;
+  height: 16px;
+  margin-left: 3px;
+  margin-bottom: 8px;
+  z-index: 999;
+  left: 0;
+  top: -82px;
+  transform: rotate(180deg);
+  position: absolute;
+}
+.bx-controls-direction .bx-next {
+  float: right;
+  background: url(../img/next.png) no-repeat;
+  width: 16px;
+  height: 16px;
+  margin-right: 3px;
+  margin-top: 8px;
+  z-index: 999;
+  right: 0;
+  top: -90px;
+  position: absolute;
 }

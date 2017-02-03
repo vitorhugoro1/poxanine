@@ -9,7 +9,7 @@
         <header>
           <h2><?php the_title() ?></h2>
           <div class="info">
-            <?php the_category(', ') ?> - <?php the_date( 'd &#149; m &#149; Y' ) ?> 
+            <?php the_category(', ') ?> - <?php the_date( 'd &#149; m &#149; Y' ) ?>
           </div>
         </header>
         <article>
@@ -24,13 +24,14 @@
           <div class="post-tags">
             <?php the_tags('') ?>
           </div>
-          <div class="comments">
+          <?php comments_template(); ?>
+          <!-- <div class="comments">
             <h3><span>Comentários</span></h3>
             <form>
               <div class="row">
                 <div class="six columns">
                   <label for="name">Nome*</label>
-                  <input class="u-full-width" type="text" id="name" name="name" placeholder="Nome">
+                  <input class="u-full-width" type="text" id="name" name="author" placeholder="Nome">
                 </div>
                 <div class="six columns">
                   <label for="email">Email*</label>
@@ -38,42 +39,24 @@
                 </div>
               </div>
               <label for="site">Site/Blog</label>
-              <input class="u-full-width" type="url" id="site" name="site" placeholder="Site">
-              <textarea class="u-full-width" name="message" placeholder="Mensagem"></textarea>
+              <input class="u-full-width" type="url" id="site" name="url" placeholder="Site">
+              <textarea class="u-full-width" name="comment" placeholder="Mensagem"></textarea>
               <input type="submit" class="button-primary" value="Comentar">
             </form>
             <ul class="comments-list">
               <li class="comment-item">
                 <div class="author">
-                  Vitor - <a href="#">email@email.com</a> - <a href="#">Site</a>
+                  Vitor <a href="#">email@email.com</a> - <a href="#">Site</a>
                 </div>
                 <div class="comment-text">
                   Comentário sagaz nas BILADAS
                 </div>
                 <div class="comment-interact">
                   <a href="#">Responder</a>
-                  <div class="comment-interact-form">
-                    <form>
-                      <div class="row">
-                        <div class="six columns">
-                          <label for="name">Nome*</label>
-                          <input class="u-full-width" type="text" id="name" name="name" placeholder="Nome">
-                        </div>
-                        <div class="six columns">
-                          <label for="email">Email*</label>
-                          <input class="u-full-width" type="email" id="email" name="email" placeholder="Email">
-                        </div>
-                      </div>
-                      <label for="site">Site/Blog</label>
-                      <input class="u-full-width" type="url" id="site" name="site" placeholder="Site">
-                      <textarea class="u-full-width" name="message" placeholder="Mensagem"></textarea>
-                      <input type="submit" class="button-primary" value="Comentar">
-                    </form>
-                  </div>
                 </div>
               </li>
             </ul>
-          </div>
+          </div> -->
         </footer>
       </div>
 

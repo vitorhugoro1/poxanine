@@ -114,7 +114,7 @@ add_action('cmb2_admin_init', 'vhr_blogroll_url');
   * @return object|WP_Error the registered post type object, or an error object
   */
   function vhr_register_blogroll() {
-  
+
     $labels = array(
       'name'                => __( 'Blogroll', 'text-domain' ),
       'singular_name'       => __( 'Blogroll', 'text-domain' ),
@@ -129,7 +129,7 @@ add_action('cmb2_admin_init', 'vhr_blogroll_url');
       'parent_item_colon'   => __( 'Blog pai:', 'text-domain' ),
       'menu_name'           => __( 'Blogroll', 'text-domain' ),
     );
-  
+
     $args = array(
       'labels'                   => $labels,
       'hierarchical'        => false,
@@ -150,9 +150,28 @@ add_action('cmb2_admin_init', 'vhr_blogroll_url');
       'capability_type'     => 'post',
       'supports'            => array('title', 'thumbnail' )
     );
-  
+
     register_post_type( 'blogroll', $args );
   }
-  
+
   add_action( 'init', 'vhr_register_blogroll' );
 
+function poxanine_comment_list($comment, $args, $depth){
+  ?>
+    <li class="comment-item" id="div-comment-<?php comment_ID(); ?>">
+      <?php if ( $comment->comment_approved == '0' ) : ?>
+         <em class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.' ); ?></em>
+          <br />
+    <?php endif; ?>
+      <div class="author">
+        <?php printf( __( '<cite class="fn">%s</cite> <a href="%s" class="comment-site">%s</a>' ), get_comment_author_link(), get_comment_author_url(), __('Blog/Site') ); ?>
+      </div>
+      <div class="comment-text">
+        <?php comment_text(); ?>
+      </div>
+      <div class="comment-interact">
+        <?php comment_reply_link( array_merge( $args, array( 'add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+      </div>
+    </li>
+  <?php
+}

@@ -4,45 +4,62 @@
     <div class="archive-page-title">
       <h1> <sub>Posts da categoria - </sub> <?php single_cat_title(); ?></h1>
     </div>
-  <?php if (have_posts()) : ?>
-    <?php $first = true; ?>
-  	<?php while (have_posts()) : the_post(); ?>
+    <?php if (have_posts()) : ?>
+      <ul class="ul-grid">
+        <?php $c = 0; ?>
+    	<?php while (have_posts()) : the_post(); ?>
+          <?php if(!is_paged() && 0 == $c): ?>
+          <article id="post-<?php the_ID() ?>" <?php post_class( '' ) ?>>
+            <div class="post-header">
+              <span class="cat"><?php the_category(' ') ?></span>
+              <h2><a href="<?php the_permalink() ?>"><?php the_title() ?></a></h2>
+              <span class="date"><?php the_date() ?></span>
+            </div>
+            <div class="post-img">
+              <?php if(has_post_thumbnail()) : ?>
+                <a href="<?php the_permalink() ?>">
+                  <?php the_post_thumbnail( 'full' ) ?>
+                </a>
+              <?php endif; ?>
+            </div>
+            <div class="post-entry">
+              <?php the_content('<span class="more-button">Continue lendo</span>', true) ?>
+            </div>
+            <div class="post-meta">
 
-      <div class="post">
-        <header>
-          <h2><a href="<?php the_permalink() ?>"><?php the_title() ?></a></h2>
-          <div class="info">
-            <?php the_category(', ') ?> - <?php the_date( 'd &#149; m &#149; Y' ) ?> - <?php comments_number('Sem comentários', '1 comentário', '% comentários') ?>
-          </div>
-          <?php if(has_post_thumbnail() && !$first) : ?>
-            <a href="#"><img src="img/thumbnail.jpg" class="thumbnail"></a>
-          <?php endif; ?>
-        </header>
-        <article>
-          <?php if($first): ?>
-            <?php the_content() ?>
-          <?php else: ?>
-            <?php the_excerpt() ?>
-          <?php endif; ?>
-        </article>
-        <footer>
-          <div class="post-tags">
-            <?php the_tags('') ?>
-          </div>
-        <?php if(!$first) : ?>
-          <a href="<?php the_permalink() ?>" class="ver-mais">Ver mais +</a>
-        <?php endif ?>
-        </footer>
-      </div>
-      <?php $first = false; ?>
+            </div>
+          </article>
+        <?php $c+=1; ?>
+        <?php else: ?>
+          <li>
+            <article id="post-<?php the_ID() ?>" <?php post_class( 'grid-item' ) ?>>
+              <div class="post-thumbnail">
+                <a href="#">
+                  <img src="" alt="" />
+                </a>
+              </div>
+              <div class="post-header">
+                <span class="cat"><?php the_category(' ') ?></span>
+                <h2><a href="<?php the_permalink() ?>"><?php the_title() ?></a></h2>
+              </div>
+              <div class="post-entry">
+                <?php the_excerpt('...') ?>
+              </div>
+              <div class="list-meta">
+                <span class="date"><?php the_date() ?></span>
+              </div>
+            </article>
+          </li>
+        <?php endif; ?>
 
-  	<?php endwhile; ?>
-      <?php vhr_paginate() ?>
-  	<?php else : ?>
+    	<?php endwhile; ?>
+    </ul>
+        <?php vhr_paginate() ?>
+    	<?php else : ?>
 
-  		<?php // No Posts Found ?>
+    		<?php // No Posts Found ?>
 
-  <?php endif; ?>
+    <?php endif; ?>
   </div>
   <!-- Fim posts loop -->
 <?php get_sidebar() ?>

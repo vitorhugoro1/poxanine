@@ -7,10 +7,9 @@
 
       <div class="post">
         <header>
+          <span class="cat"><?php the_category(' ') ?></span>
           <h2><?php the_title() ?></h2>
-          <div class="info">
-            <?php the_category(', ') ?> - <?php the_date( 'd &#149; m &#149; Y' ) ?>
-          </div>
+          <span class="date"><?php the_date() ?></span>
         </header>
         <article>
           <?php the_content() ?>

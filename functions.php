@@ -11,7 +11,7 @@ function vhr_scripts_load(){
   wp_enqueue_style('style', get_bloginfo('stylesheet_url'));
   wp_enqueue_style('normalize', get_template_directory_uri() . '/css/normalize.css');
   wp_enqueue_style('skeleton', get_template_directory_uri() . '/css/skeleton.css');
-  wp_enqueue_style('aniback', get_template_directory_uri() . '/css/aniback.css');
+  // wp_enqueue_style('aniback', get_template_directory_uri() . '/css/aniback.css');
   wp_enqueue_style('font-awesome', get_template_directory_uri() . '/css/font-awesome.min.css');
 }
 
@@ -175,3 +175,44 @@ function poxanine_comment_list($comment, $args, $depth){
     </li>
   <?php
 }
+
+add_action('pre_get_posts', 'myprefix_query_offset', 1 );
+function myprefix_query_offset(&$query) {
+
+    if ( ! $query->is_archive() ) {
+        return;
+    }
+
+    $fp = 5;
+    $ppp = 7;
+
+    if ( $query->is_paged ) {
+        $offset = $fp + ( ($query->query_vars['paged'] - 2) * $ppp );
+        $query->set('offset', $offset );
+        $query->set('posts_per_page', $ppp );
+
+    } else {
+        $query->set('posts_per_page', $fp );
+    }
+
+}
+
+add_filter('found_posts', 'myprefix_adjust_offset_pagination', 1, 2 );
+function myprefix_adjust_offset_pagination($found_posts, $query) {
+
+    $fp = 5;
+    $ppp = 7;
+
+    if ( $query->is_archive() ) {
+        if ( $query->is_paged ) {
+            return ( $found_posts + ( $ppp - $fp ) );
+        }
+    }
+    return $found_posts;
+}
+
+function new_excerpt_more($more) {
+       global $post;
+	return ' ...';
+}
+add_filter('excerpt_more', 'new_excerpt_more');

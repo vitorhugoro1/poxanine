@@ -7,10 +7,9 @@
 
       <div class="post">
         <header>
+          <span class="cat"><?php the_category(' ') ?></span>
           <h2><a href="<?php the_permalink() ?>"><?php the_title() ?></a></h2>
-          <div class="info">
-            <?php the_category(', ') ?> - <?php the_date( 'd &#149; m &#149; Y' ) ?> - <?php comments_number('Sem comentários', '1 comentário', '% comentários') ?>
-          </div>
+          <span class="date"><?php the_date() ?></span>
           <?php if(has_post_thumbnail() && !$first) : ?>
             <a href="#"><img src="img/thumbnail.jpg" class="thumbnail"></a>
           <?php endif; ?>

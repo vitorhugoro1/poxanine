@@ -10,7 +10,6 @@
 	}
 ?>
 
-<div id="comments" class="comments">
 	<h3><span> <?php comments_number('0 Comentários', '1 Comentário', '% Comentários' );?> </span></h3>
 
 	<?php if ( have_comments() ) : ?>
@@ -69,6 +68,4 @@
         <p class="cancel"><?php cancel_comment_reply_link('Cancelar Resposta'); ?></p>
 		</div>
 	 <?php else : ?>
-		<h3>Os comentários estão fechados.</h3>
 <?php endif; ?>
-</div>

@@ -7,8 +7,8 @@
 	<title><?php wp_title() ?></title>
   <?php wp_head() ?>
 </head>
-<body>
-	<div class="menu">
+<body <?php body_class() ?>>
+	<div class="container-topo">
 		<div class="container">
 			<div class="row">
 				<?php /**
@@ -21,7 +21,7 @@
 						'theme_location' => '',
 						'menu' => 'topo',
 						'container' => 'nav',
-						'container_class' => 'menu-topo',
+						'container_class' => 'menu',
 						'container_id' => '',
 						'menu_class' => 'menu-topo',
 						'menu_id' => '',
@@ -38,15 +38,23 @@
 
 					wp_nav_menu( $defaults );
 				?>
+				<div class="top-search">
+					<form id="searchform" action="<?=home_url()?>" method="get">
+						<input type="text" value="<?php the_search_query() ?>" placeholder="Digite e aperte enter..." name="s" id="s" />
+						<i class="fa fa-search search-desktop"></i>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
-	<div class="container">
-
-		<div class="row">
-			<header class="topo">
-				<a href="<?php echo home_url() ?>">
-					<?php echo '<img src="' .get_template_directory_uri() . '/img/logo.png' . '" class="logo">'; ?>
-				</a>
-			</header>
+	<div id="container-logo">
+		<div class="container">
+			<div class="row">
+				<header class="topo">
+					<a href="<?php echo home_url() ?>">
+						<?php echo '<img src="' .get_template_directory_uri() . '/img/logo.png' . '" class="logo-img">'; ?>
+					</a>
+				</header>
+			</div>
 		</div>
+	</div>

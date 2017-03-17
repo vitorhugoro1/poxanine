@@ -2,8 +2,8 @@
 <aside class="three columns">
 	<?php if ( ! dynamic_sidebar() ) : ?>
 	<?php endif; ?>
-  <div class="sidebar">
-    <h3>Newsletter</h3>
+  <div class="widget">
+    <h4>Newsletter</h4>
     <div class="newsletter">
       <div class="bg-newsletter">
         <form>

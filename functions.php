@@ -1,10 +1,11 @@
 <?php
-
 require_once get_template_directory() . '/cmb2/init.php';
 include get_template_directory() . '/blogroll-widget/blogroll-widget.php';
 include get_template_directory() . '/vhr-search-widget/vhr-search-widget.php';
 
 add_theme_support('post-thumbnails');
+add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption' ) );
+add_theme_support( 'automatic-feed-links' );
 
 function vhr_scripts_load(){
   wp_enqueue_script('jquery');
@@ -18,21 +19,20 @@ function vhr_scripts_load(){
 add_action('wp_enqueue_scripts', 'vhr_scripts_load');
 
 function vhr_paginate(){
-  ?>
+  global $wp_query;
+  $current = max( 1, absint( get_query_var( 'paged' ) ) );
+  $pagination = paginate_links( array(
+    'base' => str_replace( PHP_INT_MAX, '%#%', esc_url( get_pagenum_link( PHP_INT_MAX ) ) ),
+    'format' => '?paged=%#%',
+    'current' => $current,
+    'total' => $wp_query->max_num_pages,
+    'type' => 'array',
+    'prev_text' => '&laquo;',
+    'next_text' => '&raquo;',
+  ) );
+
+ if ( ! empty( $pagination ) ) : ?>
   <div class="pagination">
-    <?php
-				global $wp_query;
-				$current = max( 1, absint( get_query_var( 'paged' ) ) );
-				$pagination = paginate_links( array(
-					'base' => str_replace( PHP_INT_MAX, '%#%', esc_url( get_pagenum_link( PHP_INT_MAX ) ) ),
-					'format' => '?paged=%#%',
-					'current' => $current,
-					'total' => $wp_query->max_num_pages,
-					'type' => 'array',
-					'prev_text' => '&laquo;',
-					'next_text' => '&raquo;',
-				) ); ?>
-      <?php if ( ! empty( $pagination ) ) : ?>
         <ul class="pagination-list">
           <?php foreach ( $pagination as $key => $page_link ) : ?>
           <?php
@@ -52,16 +52,13 @@ function vhr_paginate(){
             }
             ?>
             <li class="pagination-item">
-              <a href="<?php echo $links[0]['url']; ?>" class="pagination-link<?php if ( strpos( $page_link, 'current' ) !== false ) { echo ' active'; } ?>"><?php echo ($links[0]['text'] != '') ? $links[0]['text'] : '...'; ?></a>
+              <a href="<?php echo ($links[0]['text'] != '') ? $links[0]['url'] : 'javascript:void(0);'; ?>" class="pagination-link<?php if ( strpos( $page_link, 'current' ) !== false ) { echo ' active'; } ?>"><?php echo ($links[0]['text'] != '') ? $links[0]['text'] : '...'; ?></a>
             </li>
           <?php endif; ?>
           <?php endforeach ?>
         </ul>
-      <?php endif ?>
-    <?php
-    ?>
   </div>
-  <?php
+<?php endif;
 }
 
 /**
@@ -72,10 +69,10 @@ function wpdocs_theme_slug_widgets_init() {
         'name'          => __( 'Main Sidebar', 'textdomain' ),
         'id'            => 'sidebar-1',
         'description'   => __( 'Widgets in this area will be shown on all posts and pages.', 'textdomain' ),
-        'before_widget' => '<div id="%1$s" class="sidebar %2$s">',
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
         'after_widget'  => '</div>',
-        'before_title'  => '<h3>',
-        'after_title'   => '</h3>',
+        'before_title'  => '<h4>',
+        'after_title'   => '</h4>',
     ) );
 }
 add_action( 'widgets_init', 'wpdocs_theme_slug_widgets_init' );
@@ -179,12 +176,12 @@ function poxanine_comment_list($comment, $args, $depth){
 add_action('pre_get_posts', 'myprefix_query_offset', 1 );
 function myprefix_query_offset(&$query) {
 
-    if ( ! $query->is_archive() ) {
+    if ( ! $query->is_archive() && ! $query->is_home() ) {
         return;
     }
 
     $fp = 5;
-    $ppp = 7;
+    $ppp = 8;
 
     if ( $query->is_paged ) {
         $offset = $fp + ( ($query->query_vars['paged'] - 2) * $ppp );
@@ -194,16 +191,15 @@ function myprefix_query_offset(&$query) {
     } else {
         $query->set('posts_per_page', $fp );
     }
-
 }
 
 add_filter('found_posts', 'myprefix_adjust_offset_pagination', 1, 2 );
 function myprefix_adjust_offset_pagination($found_posts, $query) {
 
     $fp = 5;
-    $ppp = 7;
+    $ppp = 8;
 
-    if ( $query->is_archive() ) {
+    if ( $query->is_home() || $query->is_archive()  ) {
         if ( $query->is_paged ) {
             return ( $found_posts + ( $ppp - $fp ) );
         }

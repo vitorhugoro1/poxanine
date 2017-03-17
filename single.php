@@ -1,73 +1,58 @@
 <?php get_header(); ?>
-<div class="row">
-  <div class="nine columns">
-  <?php if (have_posts()) : ?>
-    <?php $first = true; ?>
-  	<?php while (have_posts()) : the_post(); ?>
-
-      <div class="post">
-        <header>
-          <span class="cat"><?php the_category(' ') ?></span>
-          <h2><?php the_title() ?></h2>
-          <span class="date"><?php the_date() ?></span>
-        </header>
-        <article>
-          <?php the_content() ?>
-        </article>
-        <footer>
-          <div class="share">
-            <a href="#" class="facebook">Share</a>
-            <a href="#" class="pinterest">Pin</a>
-            <a href="#" class="twitter">Tweet</a>
-          </div>
-          <div class="post-tags">
-            <?php the_tags('') ?>
-          </div>
-          <?php comments_template(); ?>
-          <!-- <div class="comments">
-            <h3><span>Comentários</span></h3>
-            <form>
-              <div class="row">
-                <div class="six columns">
-                  <label for="name">Nome*</label>
-                  <input class="u-full-width" type="text" id="name" name="author" placeholder="Nome">
-                </div>
-                <div class="six columns">
-                  <label for="email">Email*</label>
-                  <input class="u-full-width" type="email" id="email" name="email" placeholder="Email">
-                </div>
+<div id="main">
+  <div class="container">
+    <div class="row">
+      <div class="nine columns">
+      <?php if (have_posts()) : ?>
+        <?php $first = true; ?>
+      	<?php while (have_posts()) : the_post(); ?>
+          <article id="post-<?php the_ID() ?>" <?php post_class( '' ) ?>>
+            <div class="post-header">
+              <span class="cat"><?php the_category(' ') ?></span>
+              <h2><?php the_title() ?></h2>
+              <span class="date"><?php the_date() ?></span>
+            </div>
+            <div class="post-img">
+              <?php if(has_post_thumbnail()) : ?>
+                <a href="<?php the_permalink() ?>">
+                  <?php the_post_thumbnail( 'full' ) ?>
+                </a>
+              <?php endif; ?>
+            </div>
+            <div class="post-entry">
+              <?php the_content() ?>
+            </div>
+            <div class="post-meta">
+              <div class="meta-comments"><a href="<?php comments_link() ?>"><?php comments_number('0 Comentários', '1 Comentário', '% Comentários' );?></a></div>
+              <div class="meta-share">
+                <span class="share-text">Compartilhe:</span>
+                <a href="#" class="facebook"></a>
+                <a href="#" class="pinterest"></a>
+                <a href="#" class="twitter"></a>
               </div>
-              <label for="site">Site/Blog</label>
-              <input class="u-full-width" type="url" id="site" name="url" placeholder="Site">
-              <textarea class="u-full-width" name="comment" placeholder="Mensagem"></textarea>
-              <input type="submit" class="button-primary" value="Comentar">
-            </form>
-            <ul class="comments-list">
-              <li class="comment-item">
-                <div class="author">
-                  Vitor <a href="#">email@email.com</a> - <a href="#">Site</a>
-                </div>
-                <div class="comment-text">
-                  Comentário sagaz nas BILADAS
-                </div>
-                <div class="comment-interact">
-                  <a href="#">Responder</a>
-                </div>
-              </li>
-            </ul>
-          </div> -->
-        </footer>
+            </div>
+            <div class="post-author">
+
+            </div>
+            <div class="post-related">
+
+            </div>
+            <div class="post-comments" <?php comment_class() ?>>
+              <?php comments_template(); ?>
+            </div>
+          </article>
+      	<?php endwhile; ?>
+
+      	<?php else : ?>
+
+      		<?php // No Posts Found ?>
+
+      <?php endif; ?>
       </div>
-
-  	<?php endwhile; ?>
-
-  	<?php else : ?>
-
-  		<?php // No Posts Found ?>
-
-  <?php endif; ?>
+      <!-- Fim posts loop -->
+    <?php get_sidebar() ?>
+    </div>
   </div>
-  <!-- Fim posts loop -->
-<?php get_sidebar() ?>
 </div>
+
 <?php get_footer(); ?>

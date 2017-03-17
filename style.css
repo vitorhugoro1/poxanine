@@ -19,6 +19,11 @@ body {
   font-family: 'Playfair Display', serif;
   font-size: 13px;
 }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Josefin Sans";
+}
+
 a {
   text-decoration: none;
 }
@@ -62,18 +67,23 @@ p {
     border-color: #1EAEDB;
 }
 
+.logo-img {
+  max-width: 100%;
+  height: auto;
+}
+
 /*
  	Header
  */
 
-.topo {
+#container-logo {
   padding-top: 50px;
   text-align: center;
-  font-family: 'Playfair Display', serif;
   font-weight: bold;
   color: #33C3F0;
+  margin-bottom: 30px;
 }
-.topo::after {
+#container-logo::after {
   clear: both;
 }
 
@@ -81,7 +91,7 @@ p {
  * Menu
  */
 
-.menu {
+.container-topo {
   background-color: #ecf0f1;
   position: fixed;
   left: 0;
@@ -93,6 +103,36 @@ p {
   z-index: 9999;
   text-transform: uppercase;
   font-weight: bold;
+}
+.top-search {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding-left: 16px;
+  border-left: 1px solid;
+  border-color: #fff;
+  z-index: 999;
+}
+.top-search form {
+  margin-bottom: 0;
+  display: inline;
+}
+.top-search input {
+  margin-bottom: 0;
+  background: transparent !important;
+  border: none !important;
+  width: 160px;
+  font-style: italic;
+}
+.top-search i {
+  font-size: 13px;
+  line-height: 50px;
+}
+.menu {
+  float: left;
+}
+#menu-topo {
+  margin-bottom: 0;
 }
 .menu-item {
   display: inline-block;
@@ -140,22 +180,29 @@ p {
  	Post
  */
 
-.archive-page-title {
-  width: 100%;
+.archive-box {
   background: #ecf0f1 no-repeat;
   position: relative;
+  text-align: center;
+  padding: 30px;
+  margin-bottom: 30px;
 }
-.archive-page-title h1 {
-  font-size: 2em;
-  line-height: 2em;
+.archive-box h1 {
+  font-size: 2.5em;
   text-align: center;
   text-transform: uppercase;
   font-weight: bold;
   margin-bottom: 0;
 }
-.archive-page-title h1 sub {
-  bottom: 0;
-  text-transform: none;
+.archive-box span {
+  display: inline-block;
+  font-size: 13px;
+  letter-spacing: 1px;
+  padding-bottom: 3px;
+  margin-bottom: 7px;
+  color: #1EAEDB;
+  border-bottom: 1px solid;
+  border-bottom-color: #1EAEDB;
 }
 
 .post {
@@ -164,7 +211,7 @@ p {
 }
 .post-header {
   text-align: center;
-  margin-bottom: 7px;
+  margin-bottom: 25px;
 }
 .post-header .cat a {
   text-transform: uppercase;
@@ -180,7 +227,6 @@ p {
   display: block;
   text-align: center;
   font-weight: bold;
-  font-size: 2em;
   color: #000;
   text-decoration: none;
   line-height: 1em;
@@ -190,12 +236,17 @@ p {
   display: block;
   text-align: center;
   font-weight: bold;
-  font-size: 24px;
+  font-size: 32px;
   color: #000;
   text-decoration: none;
   line-height: 1em;
   font-family: 'Josefin Sans', sans-serif;
 }
+
+.grid-item .post-header h2 a {
+  font-size: 22px;
+}
+
 .post-header h2 a:hover {
   transition: .7s;
   opacity: .60;
@@ -218,6 +269,26 @@ p {
   overflow: hidden;
   clear: both;
   font-style: italic;
+}
+
+.meta-share {
+  text-align: center;
+  float: right;
+  font-size: 13px;
+}
+
+.share-text {
+  margin-right: 2px;
+}
+
+.meta-comments {
+  float: left;
+}
+
+.meta-comments a {
+  font-size: 13px;
+  font-style: italic;
+  color: #999;
 }
 
 .list-meta .date {
@@ -280,76 +351,24 @@ p {
   margin-right: 0;
 }
 
-/**
- * Post Metas
- */
-
-.list-meta {
-  padding: 7px;
-}
-.post .share {
-  width: 100%;
-  text-align: center;
-}
-.post .post-tags > span {
-  font-weight: bold;
-}
-.post .post-tags {
-  margin: 5px 0 0 5px;
-  text-align: center;
-  height: 40px;
-}
-.post .post-tags > a {
-  box-sizing: border-box;
-  border: 1px solid #333;
-  text-align: center;
-  text-decoration: none;
-  font-family: 'Baloo Thambi', cursive;
-  line-height: 24px;
-  color: #333;
-  padding: 3px;
-  font-weight: bold;
-  font-size: 14px;
-}
-.post .post-tags > a:hover {
-  color: #b3b3b3;
-  border-color: #b3b3b3;
-  transition: .7s;
-}
-.post .ver-mais {
-  box-sizing: border-box;
-  border: 1px solid #333;
-  text-align: center;
-  float: right;
-  text-decoration: none;
-  font-family: 'Baloo Thambi', cursive;
-  line-height: 24px;
-  color: #333;
-  /* font-style: italic; */
-  padding: 3px 8px;
-  margin: 5px 15px 0 0;
-  font-weight: bold;
-  font-size: 14px;
-}
 
 /*
  	Sidebar
  */
 
-.sidebar {
-  background: #ffffff;
-  margin-top: 7px;
-}
-.sidebar h3 {
-  font-size: 1.5em;
-  font-weight: bold;
+.widget h4 {
+  font-size: 12px;
+  font-weight: 700;
   text-align: center;
-  font-family: 'Baloo Thambi', cursive;
-  border-bottom: 1px solid #333;
   text-transform: uppercase;
-  margin-bottom: 1rem;
+  color: #000;
+  padding: 16px 0;
+  font-family: 'Lato';
+  border: 1px solid #1EAEDB;
+  text-transform: uppercase;
+  margin-bottom: 20px;
 }
-.sidebar p {
+.widget p {
   font-size: 12px;
 }
 
@@ -720,4 +739,39 @@ p {
   right: 0;
   top: -90px;
   position: absolute;
+}
+
+/**
+ * Visual Composer
+ */
+
+.vc_separator.vc_separator_align_center h4 {
+  font-size: 1.7em !important;
+}
+
+/**
+ * Widget Categories
+ */
+
+.widget_categories ul {
+  list-style:none;
+}
+
+.widget_categories ul li {
+  color: #999;
+}
+
+.widget ul li a,
+.widget ul li a:hover {
+  color: #424242;
+}
+
+.widget ul li a:hover {
+  text-decoration: underline;
+}
+
+.widget_categories ul li {
+  margin-bottom: 7px;
+  padding-bottom: 8px;
+  border-bottom: 1px dotted #d5d5d5;
 }

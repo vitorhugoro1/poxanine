@@ -6,8 +6,7 @@
     Version: 1.0
  */
 
-@import url('https://fonts.googleapis.com/css?family=Baloo+Thambi|Tinos');
-@import url('https://fonts.googleapis.com/css?family=Josefin+Sans|Playfair+Display');
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans|Lato|Playfair+Display');
 @import url('css/font-awesome.min.css');
 
 /**
@@ -127,6 +126,7 @@ p {
 .top-search i {
   font-size: 13px;
   line-height: 50px;
+  color: rgb(34, 34, 34);
 }
 .menu {
   float: left;
@@ -150,7 +150,7 @@ p {
   line-height: 50px;
   font-size: 11px;
 }
-.menu-item:hover a {
+.menu-item a:hover {
   transition: .7s;
   color: #1EAEDB;
 }
@@ -159,7 +159,7 @@ p {
   left: 0;
   margin-left: 0;
   margin-bottom: 0;
-  margin-top: 1rem;
+  margin-top: -1rem;
   display: none;
   background-color: #ecf0f1;
 }
@@ -172,6 +172,7 @@ p {
   padding-right: 1rem;
   box-sizing: border-box;
   width: auto;
+  color: #000;
   white-space: nowrap;
   text-align: left !important;
 }
@@ -207,8 +208,12 @@ p {
 
 .post {
   clear: both;
-  padding-top: 20px;
 }
+
+.hero-article {
+  margin-bottom: 30px;
+}
+
 .post-header {
   text-align: center;
   margin-bottom: 25px;
@@ -356,10 +361,15 @@ p {
  	Sidebar
  */
 
+.widget {
+  margin-bottom: 15px;
+}
+
 .widget h4 {
   font-size: 12px;
   font-weight: 700;
   text-align: center;
+  letter-spacing: 1px;
   text-transform: uppercase;
   color: #000;
   padding: 16px 0;
@@ -555,7 +565,8 @@ p {
 
 .rodape {
   margin-top: 15px;
-  font-family: 'Baloo Thambi', cursive;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
 }
 .creative-commons {
   width: 80px;

@@ -8,7 +8,7 @@
             <?php $c = 0; ?>
           <?php while (have_posts()) : the_post(); ?>
               <?php if(!is_paged() && 0 == $c): ?>
-              <article id="post-<?php the_ID() ?>" <?php post_class( '' ) ?>>
+              <article id="post-<?php the_ID() ?>" <?php post_class( 'hero-article' ) ?>>
                 <div class="post-header">
                   <span class="cat"><?php the_category(' ') ?></span>
                   <h2><a href="<?php the_permalink() ?>"><?php the_title() ?></a></h2>

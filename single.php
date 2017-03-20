@@ -32,10 +32,10 @@
               </div>
             </div>
             <div class="post-author">
-
+              <?php vhr_post_author() ?>
             </div>
             <div class="post-related">
-
+              <?php vhr_related_posts() ?>
             </div>
             <div class="post-comments" <?php comment_class() ?>>
               <?php comments_template(); ?>

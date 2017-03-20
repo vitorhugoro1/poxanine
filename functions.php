@@ -1,7 +1,10 @@
 <?php
-require_once get_template_directory() . '/cmb2/init.php';
+
+if(file_exists(get_template_directory() . '/cmb2/init.php')){
+  require_once get_template_directory() . '/cmb2/init.php';
+}
+
 include get_template_directory() . '/blogroll-widget/blogroll-widget.php';
-include get_template_directory() . '/vhr-search-widget/vhr-search-widget.php';
 
 add_theme_support('post-thumbnails');
 add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption' ) );
@@ -12,7 +15,6 @@ function vhr_scripts_load(){
   wp_enqueue_style('style', get_bloginfo('stylesheet_url'));
   wp_enqueue_style('normalize', get_template_directory_uri() . '/css/normalize.css');
   wp_enqueue_style('skeleton', get_template_directory_uri() . '/css/skeleton.css');
-  // wp_enqueue_style('aniback', get_template_directory_uri() . '/css/aniback.css');
   wp_enqueue_style('font-awesome', get_template_directory_uri() . '/css/font-awesome.min.css');
 }
 
@@ -64,7 +66,7 @@ function vhr_paginate(){
 /**
  * Add a sidebar.
  */
-function wpdocs_theme_slug_widgets_init() {
+function vhr_theme_slug_widgets_init() {
     register_sidebar( array(
         'name'          => __( 'Main Sidebar', 'textdomain' ),
         'id'            => 'sidebar-1',
@@ -75,7 +77,7 @@ function wpdocs_theme_slug_widgets_init() {
         'after_title'   => '</h4>',
     ) );
 }
-add_action( 'widgets_init', 'wpdocs_theme_slug_widgets_init' );
+add_action( 'widgets_init', 'vhr_theme_slug_widgets_init' );
 
 function vhr_blogroll_url(){
   $prefix = '_vhr_';
@@ -153,7 +155,7 @@ add_action('cmb2_admin_init', 'vhr_blogroll_url');
 
   add_action( 'init', 'vhr_register_blogroll' );
 
-function poxanine_comment_list($comment, $args, $depth){
+function vhr_comment_list($comment, $args, $depth){
   ?>
     <li class="comment-item" id="div-comment-<?php comment_ID(); ?>">
       <?php if ( $comment->comment_approved == '0' ) : ?>
@@ -173,8 +175,8 @@ function poxanine_comment_list($comment, $args, $depth){
   <?php
 }
 
-add_action('pre_get_posts', 'myprefix_query_offset', 1 );
-function myprefix_query_offset(&$query) {
+add_action('pre_get_posts', 'vhr_query_offset', 1 );
+function vhr_query_offset(&$query) {
 
     if ( ! $query->is_archive() && ! $query->is_home() ) {
         return;
@@ -193,8 +195,8 @@ function myprefix_query_offset(&$query) {
     }
 }
 
-add_filter('found_posts', 'myprefix_adjust_offset_pagination', 1, 2 );
-function myprefix_adjust_offset_pagination($found_posts, $query) {
+add_filter('found_posts', 'vhr_adjust_offset_pagination', 1, 2 );
+function vhr_adjust_offset_pagination($found_posts, $query) {
 
     $fp = 5;
     $ppp = 8;
@@ -207,8 +209,64 @@ function myprefix_adjust_offset_pagination($found_posts, $query) {
     return $found_posts;
 }
 
-function new_excerpt_more($more) {
+function vhr_excerpt_more($more) {
        global $post;
 	return ' ...';
 }
-add_filter('excerpt_more', 'new_excerpt_more');
+add_filter('excerpt_more', 'vhr_excerpt_more');
+
+function vhr_related_posts(){
+  global $post;
+
+  $tags = wp_get_post_tags($post->ID);
+
+  if($tags){
+    ?>
+      <div class="post-box">
+        <h4 class="post-box-title">Você também pode gostar</h4>
+      </div>
+    <?php
+    $tags_ids = array();
+    foreach($tags as $individual_tags){
+      $tags_ids[] = $individual_tags->term_id;
+    }
+
+    $args = array(
+      'tag__in' => $tags_ids,
+      'post__not_in'  => array($post->ID),
+      'posts_per_page'  => 3,
+      'ignore_sticky_posts' => 1
+    );
+
+    $my_related = new WP_Query($args);
+
+    while($my_related->have_posts()){
+      $my_related->the_post();
+       ?>
+        <div class="item-related">
+          <?php if(has_post_thumbnail()): ?>
+            <a href="<?php the_permalink() ?>">
+              <?php the_post_thumbnail( 'full' ) ?>
+            </a>
+          <?php endif; ?>
+          <h3><a href="<?php the_permalink() ?>"><?php the_title() ?></a></h3>
+          <span class="date"><?php the_date() ?></span>
+        </div>
+      <?php
+    }
+  }
+}
+
+function vhr_post_author(){
+  global $post;
+
+  ?>
+    <div class="author-img">
+      <?php echo get_avatar($post->post_author) ?>
+    </div>
+    <div class="author-content">
+      <h5><?php echo get_the_author_meta('display_name', $post->post_author) ?></h5>
+      <p><?php echo get_the_author_meta('user_description', $post->post_author) ?></p>
+    </div>
+  <?php
+}

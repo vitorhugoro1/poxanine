@@ -19,7 +19,7 @@
       'avatar_size' => 32,
       'reply_text'  => 'Responder',
       'per_page'    => 4,
-      'callback'    => 'poxanine_comment_list'
+      'callback'    => 'vhr_comment_list'
     )); ?>
     </ol>
 

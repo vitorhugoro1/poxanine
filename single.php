@@ -26,10 +26,13 @@
               <div class="meta-comments"><a href="<?php comments_link() ?>"><?php comments_number('0 Comentários', '1 Comentário', '% Comentários' );?></a></div>
               <div class="meta-share">
                 <span class="share-text">Compartilhe:</span>
-                <a href="#" class="facebook"></a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink() ?>" target="_blank" class="facebook"></a>
                 <a href="#" class="pinterest"></a>
                 <a href="#" class="twitter"></a>
               </div>
+            </div>
+            <div class="post-tags">
+              <?php the_tags( 'Tags: ', $sep = ', ', $after = '' ) ?>
             </div>
             <div class="post-author">
               <?php vhr_post_author() ?>
@@ -37,7 +40,7 @@
             <div class="post-related">
               <?php vhr_related_posts() ?>
             </div>
-            <div class="post-comments" <?php comment_class() ?>>
+            <div class="post-comments" id="comments">
               <?php comments_template(); ?>
             </div>
           </article>

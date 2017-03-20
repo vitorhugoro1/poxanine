@@ -4,7 +4,7 @@ if(file_exists(get_template_directory() . '/cmb2/init.php')){
   require_once get_template_directory() . '/cmb2/init.php';
 }
 
-include get_template_directory() . '/blogroll-widget/blogroll-widget.php';
+// include get_template_directory() . '/blogroll-widget/blogroll-widget.php';
 
 add_theme_support('post-thumbnails');
 add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption' ) );
@@ -16,6 +16,10 @@ function vhr_scripts_load(){
   wp_enqueue_style('normalize', get_template_directory_uri() . '/css/normalize.css');
   wp_enqueue_style('skeleton', get_template_directory_uri() . '/css/skeleton.css');
   wp_enqueue_style('font-awesome', get_template_directory_uri() . '/css/font-awesome.min.css');
+
+  if ( is_singular() && get_option( 'thread_comments' ) ){
+  	wp_enqueue_script( 'comment-reply', '', '', array(), true );
+  }
 }
 
 add_action('wp_enqueue_scripts', 'vhr_scripts_load');
@@ -79,97 +83,23 @@ function vhr_theme_slug_widgets_init() {
 }
 add_action( 'widgets_init', 'vhr_theme_slug_widgets_init' );
 
-function vhr_blogroll_url(){
-  $prefix = '_vhr_';
-
-  $url = new_cmb2_box(array(
-        'id' => 'url_metabox',
-        'title' => 'Caminho do blog',
-        'object_types' => array('blogroll'),
-        'context' => 'normal',
-        'priority' => 'high',
-        'show_names' => true,
-      ));
-
-  $url->add_field(array(
-    'id' => $prefix.'url',
-    'name' => 'Caminho do blog',
-    'type' => 'text_url',
-    'description' => 'Exemplo http://poxanine.com.br',
-    'attributes'  => array(
-      'required'  => true,
-      'placeholder' => 'Url do blog'
-    )
-  ));
-}
-
-add_action('cmb2_admin_init', 'vhr_blogroll_url');
-  /**
-  * Registers a new post type
-  * @uses $wp_post_types Inserts new post type object into the list
-  *
-  * @param string  Post type key, must not exceed 20 characters
-  * @param array|string  See optional args description above.
-  * @return object|WP_Error the registered post type object, or an error object
-  */
-  function vhr_register_blogroll() {
-
-    $labels = array(
-      'name'                => __( 'Blogroll', 'text-domain' ),
-      'singular_name'       => __( 'Blogroll', 'text-domain' ),
-      'add_new'             => _x( 'Adicionar novo blog', 'text-domain', 'text-domain' ),
-      'add_new_item'        => __( 'Adicionar novo blog', 'text-domain' ),
-      'edit_item'           => __( 'Editar blog', 'text-domain' ),
-      'new_item'            => __( 'Novo blog', 'text-domain' ),
-      'view_item'           => __( 'Ver blog', 'text-domain' ),
-      'search_items'        => __( 'Procurar blogs', 'text-domain' ),
-      'not_found'           => __( 'Nenhum blog encontrado', 'text-domain' ),
-      'not_found_in_trash'  => __( 'Nenhum blog encontrado no lixo', 'text-domain' ),
-      'parent_item_colon'   => __( 'Blog pai:', 'text-domain' ),
-      'menu_name'           => __( 'Blogroll', 'text-domain' ),
-    );
-
-    $args = array(
-      'labels'                   => $labels,
-      'hierarchical'        => false,
-      'taxonomies'          => array(),
-      'public'              => false,
-      'show_ui'             => true,
-      'show_in_menu'        => true,
-      'show_in_admin_bar'   => true,
-      'menu_position'       => null,
-      'menu_icon'           => null,
-      'show_in_nav_menus'   => true,
-      'publicly_queryable'  => false,
-      'exclude_from_search' => false,
-      'has_archive'         => false,
-      'query_var'           => false,
-      'can_export'          => true,
-      'rewrite'             => true,
-      'capability_type'     => 'post',
-      'supports'            => array('title', 'thumbnail' )
-    );
-
-    register_post_type( 'blogroll', $args );
-  }
-
-  add_action( 'init', 'vhr_register_blogroll' );
-
 function vhr_comment_list($comment, $args, $depth){
   ?>
-    <li class="comment-item" id="div-comment-<?php comment_ID(); ?>">
-      <?php if ( $comment->comment_approved == '0' ) : ?>
-         <em class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.' ); ?></em>
-          <br />
-    <?php endif; ?>
-      <div class="author">
-        <?php printf( __( '<cite class="fn">%s</cite> <a href="%s" class="comment-site">%s</a>' ), get_comment_author_link(), get_comment_author_url(), __('Blog/Site') ); ?>
-      </div>
-      <div class="comment-text">
-        <?php comment_text(); ?>
-      </div>
-      <div class="comment-interact">
-        <?php comment_reply_link( array_merge( $args, array( 'add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+    <li <?php comment_class() ?> id="div-comment-<?php comment_ID(); ?>">
+      <div class="comment-item">
+        <div class="author-img">
+          <?php echo get_avatar( get_comment_author_email(), 50) ?>
+        </div>
+        <div class="comment-text">
+          <span class="reply"><?php comment_reply_link( array_merge( $args, array( 'add_below' => 'div-comment', 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?></span>
+          <span class="author"><?php echo get_comment_author() ?>
+            <?php if ( $comment->comment_approved == '0' ) : ?>
+              - <em class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.' ); ?></em>
+            <?php endif; ?>
+          </span>
+          <span class="date"><?php comment_date() ?></span>
+          <?php comment_text(); ?>
+        </div>
       </div>
     </li>
   <?php
@@ -177,6 +107,10 @@ function vhr_comment_list($comment, $args, $depth){
 
 add_action('pre_get_posts', 'vhr_query_offset', 1 );
 function vhr_query_offset(&$query) {
+
+    if(! $query->is_main_query()){
+      return;
+    }
 
     if ( ! $query->is_archive() && ! $query->is_home() ) {
         return;
@@ -201,7 +135,7 @@ function vhr_adjust_offset_pagination($found_posts, $query) {
     $fp = 5;
     $ppp = 8;
 
-    if ( $query->is_home() || $query->is_archive()  ) {
+    if ( $query->is_home() && $query->is_main_query() || $query->is_archive() && $query->is_main_query() ) {
         if ( $query->is_paged ) {
             return ( $found_posts + ( $ppp - $fp ) );
         }
@@ -235,7 +169,8 @@ function vhr_related_posts(){
       'tag__in' => $tags_ids,
       'post__not_in'  => array($post->ID),
       'posts_per_page'  => 3,
-      'ignore_sticky_posts' => 1
+      'orderby' => 'rand',
+      'ignore_sticky_posts' => 0
     );
 
     $my_related = new WP_Query($args);
@@ -254,6 +189,7 @@ function vhr_related_posts(){
         </div>
       <?php
     }
+    wp_reset_query();
   }
 }
 
@@ -265,7 +201,7 @@ function vhr_post_author(){
       <?php echo get_avatar($post->post_author) ?>
     </div>
     <div class="author-content">
-      <h5><?php echo get_the_author_meta('display_name', $post->post_author) ?></h5>
+      <h5><?php the_author_link() ?></h5>
       <p><?php echo get_the_author_meta('user_description', $post->post_author) ?></p>
     </div>
   <?php

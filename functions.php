@@ -4,6 +4,10 @@ if(file_exists(get_template_directory() . '/extensions/cmb2/init.php')){
   require_once get_template_directory() . '/extensions/cmb2/init.php';
 }
 
+if(file_exists(get_template_directory() . '/extensions/tgm/tgm-configuration.php')){
+  require_once get_template_directory() . '/extensions/tgm/tgm-configuration.php';
+}
+
 add_theme_support('post-thumbnails');
 add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption' ) );
 add_theme_support( 'automatic-feed-links' );

@@ -237,6 +237,9 @@ span.required {
   line-height: 1em;
   font-family: 'Josefin Sans', sans-serif;
 }
+.grid-item {
+  margin-bottom: 40px;
+}
 .grid-item .post-header h2 a {
   font-size: 22px;
 }
@@ -806,4 +809,39 @@ em.comment-awaiting-moderation {
   margin-bottom: 7px;
   padding-bottom: 8px;
   border-bottom: 1px dotted #d5d5d5;
+}
+
+/**
+ * tagcloud
+ */
+
+
+.widget .tagcloud a {
+    font-size: 9px !important;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background: #f2f2f2;
+    color: #777;
+    padding: 6px 8px 7px;
+    margin-right: 5px;
+    margin-bottom: 8px;
+    display: inline-block;
+    -o-transition: .3s;
+    -ms-transition: .3s;
+    -moz-transition: .3s;
+    -webkit-transition: .3s;
+}
+
+.widget .tagcloud a:hover {
+    opacity: .7;
+    text-decoration: none;
+}
+
+.instagram-title {
+    font-size: 16px;
+    font-family: 'Lato';
+    text-align: center;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-weight: 700;
 }

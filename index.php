@@ -27,10 +27,7 @@
                 <div class="post-meta">
                   <div class="meta-comments"><a href="<?php comments_link() ?>"><?php comments_number('0 Comentários', '1 Comentário', '% Comentários' );?></a></div>
                   <div class="meta-share">
-                    <span class="share-text">Compartilhe:</span>
-                    <a href="#" class="facebook"></a>
-                    <a href="#" class="pinterest"></a>
-                    <a href="#" class="twitter"></a>
+                    <?php vhr_share_links() ?>
                   </div>
                 </div>
               </article>
@@ -39,7 +36,7 @@
               <li>
                 <article id="post-<?php the_ID() ?>" <?php post_class( 'grid-item' ) ?>>
                   <?php if(has_post_thumbnail()) : ?>
-                    <div class="post-thumbnail">
+                    <div class="post-img">
                         <a href="<?php the_permalink() ?>">
                           <?php the_post_thumbnail( 'full' ) ?>
                         </a>

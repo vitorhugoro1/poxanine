@@ -1,10 +1,8 @@
 <?php
 
-if(file_exists(get_template_directory() . '/cmb2/init.php')){
-  require_once get_template_directory() . '/cmb2/init.php';
+if(file_exists(get_template_directory() . '/extensions/cmb2/init.php')){
+  require_once get_template_directory() . '/extensions/cmb2/init.php';
 }
-
-// include get_template_directory() . '/blogroll-widget/blogroll-widget.php';
 
 add_theme_support('post-thumbnails');
 add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption' ) );
@@ -13,9 +11,9 @@ add_theme_support( 'automatic-feed-links' );
 function vhr_scripts_load(){
   wp_enqueue_script('jquery');
   wp_enqueue_style('style', get_bloginfo('stylesheet_url'));
-  wp_enqueue_style('normalize', get_template_directory_uri() . '/css/normalize.css');
-  wp_enqueue_style('skeleton', get_template_directory_uri() . '/css/skeleton.css');
-  wp_enqueue_style('font-awesome', get_template_directory_uri() . '/css/font-awesome.min.css');
+  wp_enqueue_style('normalize', get_template_directory_uri() . '/assets/css/normalize.css');
+  wp_enqueue_style('skeleton', get_template_directory_uri() . '/assets/css/skeleton.css');
+  wp_enqueue_style('font-awesome', get_template_directory_uri() . '/assets/css/font-awesome.min.css');
 
   if ( is_singular() && get_option( 'thread_comments' ) ){
   	wp_enqueue_script( 'comment-reply', '', '', array(), true );
@@ -72,10 +70,20 @@ function vhr_paginate(){
  */
 function vhr_theme_slug_widgets_init() {
     register_sidebar( array(
-        'name'          => __( 'Main Sidebar', 'textdomain' ),
+        'name'          => 'Sidebar Lateral',
         'id'            => 'sidebar-1',
         'description'   => __( 'Widgets in this area will be shown on all posts and pages.', 'textdomain' ),
         'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h4>',
+        'after_title'   => '</h4>',
+    ) );
+
+    register_sidebar( array(
+        'name'          => 'Instagram Footer',
+        'id'            => 'instagram-footer',
+        'description'   => 'Show instagram in footer',
+        'before_widget' => '<div id="%1$s" class="instagram-footer %2$s">',
         'after_widget'  => '</div>',
         'before_title'  => '<h4>',
         'after_title'   => '</h4>',
@@ -204,5 +212,16 @@ function vhr_post_author(){
       <h5><?php the_author_link() ?></h5>
       <p><?php echo get_the_author_meta('user_description', $post->post_author) ?></p>
     </div>
+  <?php
+}
+
+function vhr_share_links(){
+  global $post;
+  $title = urlencode(get_the_title($post->ID));
+  ?>
+    <span class="share-text">Compartilhe:</span>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=<?=get_the_permalink($post->ID)?>" target="_blank" class="facebook"></a>
+    <a href="http://pinterest.com/pin/create/button/?url=<?=get_the_permalink($post->ID)?>&description=<?=$title?>" class="pinterest"></a>
+    <a href="http://twitter.com/share?text=<?=$title?>&url=<?=get_the_permalink($post->ID)?>" class="twitter"></a>
   <?php
 }

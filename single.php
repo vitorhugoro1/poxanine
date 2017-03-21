@@ -25,10 +25,7 @@
             <div class="post-meta">
               <div class="meta-comments"><a href="<?php comments_link() ?>"><?php comments_number('0 Comentários', '1 Comentário', '% Comentários' );?></a></div>
               <div class="meta-share">
-                <span class="share-text">Compartilhe:</span>
-                <a href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink() ?>" target="_blank" class="facebook"></a>
-                <a href="#" class="pinterest"></a>
-                <a href="#" class="twitter"></a>
+                <?php vhr_share_links() ?>
               </div>
             </div>
             <div class="post-tags">

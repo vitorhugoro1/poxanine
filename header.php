@@ -52,7 +52,7 @@
 			<div class="row">
 				<header class="topo">
 					<a href="<?php echo home_url() ?>">
-						<?php echo '<img src="' .get_template_directory_uri() . '/img/logo.png' . '" class="logo-img">'; ?>
+						<?php echo '<img src="' .get_template_directory_uri() . '/assets/img/logo.png' . '" class="logo-img">'; ?>
 					</a>
 				</header>
 			</div>

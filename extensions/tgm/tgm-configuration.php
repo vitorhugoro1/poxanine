@@ -52,6 +52,13 @@ function vhr_register_required_plugins() {
       'name'      => 'Google Analytics for WordPress by MonsterInsights',
       'slug'      => 'google-analytics-for-wordpress',
       'required'  => false
+    ),
+
+    // Contact Form 7
+    array(
+      'name'      => 'Contact Form 7',
+      'slug'      => 'contact-form-7',
+      'required'  => true
     )
 	);
 

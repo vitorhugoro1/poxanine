@@ -125,8 +125,11 @@ span.required {
 .menu {
   float: left;
 }
-#menu-topo {
+#header-menu {
   margin-bottom: 0;
+}
+#mobile-menu {
+  display: none;
 }
 .menu-item {
   display: inline-block;
@@ -337,6 +340,22 @@ span.required {
 .post-box {
   text-align: center;
 }
+.post-entry p, .post-entry h1, .post-entry h2, .post-entry h3, .post-entry h4, .post-entry h5, .post-entry h6, .post-entry hr {
+  margin-bottom: 18px;
+}
+.post-entry blockquote {
+  padding: 0 18px;
+  border-left: 3px solid;
+  border-left-color: #1EAEDB;
+  margin: 0;
+}
+.post-entry blockquote p {
+  font-size: 18px;
+  font-style: italic;
+  line-height: 28px;
+  color: #424242;
+  font-family: "Georgia";
+}
 .item-related {
   width: 260px;
   float: left;
@@ -472,21 +491,20 @@ span.required {
   */
 
 .pagination {
-  clear: both;
-  float: right;
-  position: relative;
-  left: -50%;
-  text-align: left;
+  overflow: hidden;
+  width: 100%;
+  text-align: center;
+  margin-top: 60px;
+  margin-bottom: 40px;
 }
 .pagination-list {
   list-style: none;
-  position: relative;
-  left: 50%;
+  margin: 0 auto;
 }
 .pagination-item {
-  float: left;
-  position: relative;
-  margin: 1rem 0.5rem 1rem 0.5rem;
+  list-style: none;
+  margin: 0 auto;
+  display: inline;
 }
 .pagination-link {
   font-size: 10px;
@@ -563,7 +581,7 @@ span.required {
   border-color: #1EAEDB;
 }
 .comments-list .comment {
-    list-style: none;
+  list-style: none;
 }
 .comment-item {
   border-bottom: 1px dotted #eee;
@@ -573,8 +591,7 @@ span.required {
 .comment-text {
   overflow: hidden;
 }
-.comment-item .comment-text span.author,
-.comment-item .comment-text span.author a {
+.comment-item .comment-text span.author, .comment-item .comment-text span.author a {
   display: block;
   font-size: 13px;
   font-weight: 700;
@@ -591,34 +608,32 @@ span.required {
   display: block;
 }
 .post-comments span.reply a {
-    float: right;
-    font-size: 10px;
-    background-color: #aaa;
-    color: #FFF;
-    padding: 2px 5px 4px 5px;
-    border-radius: 2px;
-    margin-left: 7px;
-    -o-transition: .3s;
-    -ms-transition: .3s;
-    -moz-transition: .3s;
-    -webkit-transition: .3s;
-    transition: .3s;
+  float: right;
+  font-size: 10px;
+  background-color: #aaa;
+  color: #FFF;
+  padding: 2px 5px 4px 5px;
+  border-radius: 2px;
+  margin-left: 7px;
+  -o-transition: .3s;
+  -ms-transition: .3s;
+  -moz-transition: .3s;
+  -webkit-transition: .3s;
+  transition: .3s;
 }
 #respond {
-    margin-bottom: 20px;
-    overflow: hidden;
+  margin-bottom: 20px;
+  overflow: hidden;
 }
-
 #respond h3 {
-    font-size: 11px;
-    color: #999;
-    font-weight: 700;
-    margin-bottom: 20px;
-    font-family: "Lato";
-    letter-spacing: 2px;
-    text-transform: uppercase;
+  font-size: 11px;
+  color: #999;
+  font-weight: 700;
+  margin-bottom: 20px;
+  font-family: "Lato";
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
-
 #respond h3 small a {
   text-transform: uppercase;
   font-size: 11px;
@@ -634,21 +649,18 @@ span.required {
   -webkit-transition: .3s;
   transition: .3s;
 }
-
 #commentform label {
-    color: #999;
-    font-family: 'Lato';
-    letter-spacing: 1px;
+  color: #999;
+  font-family: 'Lato';
+  letter-spacing: 1px;
 }
-
 em.comment-awaiting-moderation {
-    font-size: 9px;
-    color: darkcyan;
-    text-transform: none;
+  font-size: 9px;
+  color: darkcyan;
+  text-transform: none;
 }
-
 .comments-list ul.children {
-    margin: 0 0 0 75px;
+  margin: 0 0 0 75px;
 }
 
 /**
@@ -815,33 +827,30 @@ em.comment-awaiting-moderation {
  * tagcloud
  */
 
-
 .widget .tagcloud a {
-    font-size: 9px !important;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    background: #f2f2f2;
-    color: #777;
-    padding: 6px 8px 7px;
-    margin-right: 5px;
-    margin-bottom: 8px;
-    display: inline-block;
-    -o-transition: .3s;
-    -ms-transition: .3s;
-    -moz-transition: .3s;
-    -webkit-transition: .3s;
+  font-size: 9px !important;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: #f2f2f2;
+  color: #777;
+  padding: 6px 8px 7px;
+  margin-right: 5px;
+  margin-bottom: 8px;
+  display: inline-block;
+  -o-transition: .3s;
+  -ms-transition: .3s;
+  -moz-transition: .3s;
+  -webkit-transition: .3s;
 }
-
 .widget .tagcloud a:hover {
-    opacity: .7;
-    text-decoration: none;
+  opacity: .7;
+  text-decoration: none;
 }
-
 .instagram-title {
-    font-size: 16px;
-    font-family: 'Lato';
-    text-align: center;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    font-weight: 700;
+  font-size: 16px;
+  font-family: 'Lato';
+  text-align: center;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  font-weight: 700;
 }

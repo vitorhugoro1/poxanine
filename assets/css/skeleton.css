@@ -403,39 +403,26 @@ there.
 
 
 /* Larger than mobile */
-@media (min-width: 400px) {}
+@media only screen and (min-width: 400px) {}
 
 /* Larger than phablet (also point when grid becomes active) */
-@media (max-width: 550px) {
-  /*
-    Post
-   */
-  .post h2 {
-    font-size: 3em;
+@media only screen and (max-width: 550px) {
+
+  .container {
+    width: 100% !important;
+    box-sizing: border-box;
   }
 
-  .post .date {
-    font-size: 1.1em;
+  .three.columns {
+    width: 100% !important;
+    margin: 0 auto;
+    float: none;
+    overflow: hidden;
   }
 
-  .post p {
-    font-size: 1.1em;
-  }
-
-  .post .categories {
-    font-size: 1.5em;
-  }
-
-  .post .author > .title {
-    line-height: 40px;
-  }
-
-  /*
-    About Me
-   */
-
-  .about p {
-    font-size: 1em !important;
+  .ul-grid > li {
+    width: 100%;
+    margin-bottom: 30px;
   }
 
   /* Footer */
@@ -451,8 +438,96 @@ there.
 }
 
 /* Larger than tablet */
-@media (max-width: 768px) {
-  .three.columns,
+@media only screen and (max-width: 768px) {
+  #header-menu {
+    display: none;
+  }
+
+  #mobile-menu {
+    display: block;
+    overflow: hidden;
+    background: #ecf0f1;
+  }
+
+  #mobile-menu .action-menu a:hover,
+  #mobile-menu .action-menu a:active {
+    color: #999;
+  }
+
+  #mobile-menu .top-search {
+    border-top: 1px solid #bdc3c7;
+    top: 50px;
+    width: 100%;
+    background: #ecf0f1;
+    display: none;
+  }
+  #mobile-menu .top-search form {
+    margin-bottom: 0;
+    display: block;
+    padding: 10px;
+  }
+  #mobile-menu .top-search input {
+    background: #fff !important;
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+  }
+
+  #mobile-menu ul {
+    display: block;
+    overflow: hidden;
+    margin-bottom: 0;
+  }
+
+  .menu-action, .search-action {
+    font-size: 18px;
+    line-height: 50px;
+    color: #999;
+    font-weight: 700;
+  }
+
+  .search-action {
+    float: right;
+  }
+
+  .mobile-menu {
+    border-top: 1px solid #bdc3c7;
+    display: none;
+  }
+
+  .menu-item {
+    display: block;
+    text-align: center;
+    position: relative;
+}
+
+  .menu-item a {
+      color: #333;
+      font-size: 14px;
+      line-height: inherit;
+      display: block;
+      float: none;
+      text-align: center;
+      padding: 10px 0;
+  }
+
+  .container {
+    width: 95%;
+  }
+
+  .three.columns {
+    width: 480px;
+    margin: 0 auto;
+    float: none;
+    overflow: hidden;
+  }
+
+  .pagination {
+    margin-top: 60px;
+    margin-bottom: 40px;
+    overflow: hidden;
+  }
+
   .nine.columns,
   .one-half.column {
     width:100%;
@@ -472,10 +547,10 @@ there.
 }
 
 /* Larger than desktop */
-@media (min-width: 1000px) {}
+@media only screen and (min-width: 1000px) {}
 
 /* Larger than Desktop HD */
-@media (min-width: 1200px) {
+@media only screen and (min-width: 1200px) {
   .container {
     min-width: 1200px;
   }

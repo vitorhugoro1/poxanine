@@ -12,13 +12,13 @@
               <h2><?php the_title() ?></h2>
               <span class="date"><?php the_date() ?></span>
             </div>
-            <div class="post-img">
-              <?php if(has_post_thumbnail()) : ?>
-                <a href="<?php the_permalink() ?>">
-                  <?php the_post_thumbnail( 'full' ) ?>
-                </a>
-              <?php endif; ?>
-            </div>
+            <?php if(has_post_thumbnail()) : ?>
+              <div class="post-img">
+                  <a href="<?php the_permalink() ?>">
+                    <?php the_post_thumbnail( 'full' ) ?>
+                  </a>
+              </div>
+            <?php endif; ?>
             <div class="post-entry">
               <?php the_content() ?>
             </div>
@@ -28,15 +28,9 @@
                 <?php vhr_share_links() ?>
               </div>
             </div>
-            <div class="post-tags">
-              <?php the_tags( 'Tags: ', $sep = ', ', $after = '' ) ?>
-            </div>
-            <div class="post-author">
-              <?php vhr_post_author() ?>
-            </div>
-            <div class="post-related">
-              <?php vhr_related_posts() ?>
-            </div>
+            <?php vhr_post_tags() ?>
+            <?php vhr_post_author() ?>
+            <?php vhr_related_posts() ?>
             <div class="post-comments" id="comments">
               <?php comments_template(); ?>
             </div>

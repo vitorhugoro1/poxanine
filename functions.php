@@ -26,6 +26,14 @@ function vhr_scripts_load(){
 
 add_action('wp_enqueue_scripts', 'vhr_scripts_load');
 
+function vhr_register_menu(){
+  register_nav_menus( array(
+    'topo'   => 'Menu do topo'
+  ) );
+}
+
+add_action( 'init', 'vhr_register_menu' );
+
 function vhr_paginate(){
   global $wp_query;
   $current = max( 1, absint( get_query_var( 'paged' ) ) );
@@ -168,6 +176,7 @@ function vhr_related_posts(){
 
   if($tags){
     ?>
+    <div class="post-related">
       <div class="post-box">
         <h4 class="post-box-title">Você também pode gostar</h4>
       </div>
@@ -202,6 +211,7 @@ function vhr_related_posts(){
       <?php
     }
     wp_reset_query();
+    echo '</div>';
   }
 }
 
@@ -209,6 +219,7 @@ function vhr_post_author(){
   global $post;
 
   ?>
+  <div class="post-author">
     <div class="author-img">
       <?php echo get_avatar($post->post_author) ?>
     </div>
@@ -216,6 +227,7 @@ function vhr_post_author(){
       <h5><?php the_author_link() ?></h5>
       <p><?php echo get_the_author_meta('user_description', $post->post_author) ?></p>
     </div>
+  </div>
   <?php
 }
 
@@ -228,4 +240,18 @@ function vhr_share_links(){
     <a href="http://pinterest.com/pin/create/button/?url=<?=get_the_permalink($post->ID)?>&description=<?=$title?>" class="pinterest"></a>
     <a href="http://twitter.com/share?text=<?=$title?>&url=<?=get_the_permalink($post->ID)?>" class="twitter"></a>
   <?php
+}
+
+function vhr_post_tags(){
+  global $post;
+
+  $tags = wp_get_post_tags($post->ID);
+
+  if($tags){
+    ?>
+    <div class="post-tags">
+      <?php the_tags( 'Tags: ', $sep = ', ', $after = '' ) ?>
+    </div>
+    <?php
+  }
 }

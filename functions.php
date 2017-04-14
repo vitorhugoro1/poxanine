@@ -14,6 +14,7 @@ add_theme_support( 'automatic-feed-links' );
 
 function vhr_scripts_load(){
   wp_enqueue_script('jquery');
+  wp_enqueue_script('main', get_template_directory_uri() . '/assets/js/main.js');
   wp_enqueue_style('style', get_bloginfo('stylesheet_url'));
   wp_enqueue_style('normalize', get_template_directory_uri() . '/assets/css/normalize.css');
   wp_enqueue_style('skeleton', get_template_directory_uri() . '/assets/css/skeleton.css');

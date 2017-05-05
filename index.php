@@ -1,5 +1,13 @@
 <?php get_header(); ?>
 <div id="main">
+	<?php if(isset($_GET['s'])) : ?>
+    <div class="archive-box">
+        <div class="container">
+            <span>Você pesquisou por:</span>
+            <h1><?php the_search_query(); ?></h1>
+        </div>
+    </div>
+	<?php endif; ?>
   <div class="container">
     <div class="row">
       <div class="nine columns">

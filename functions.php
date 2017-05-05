@@ -14,6 +14,7 @@ add_theme_support( 'automatic-feed-links' );
 
 function vhr_scripts_load(){
   wp_enqueue_script('jquery');
+  wp_enqueue_script('mobile', get_template_directory_uri() . '/assets/js/mobile.js');
   wp_enqueue_script('main', get_template_directory_uri() . '/assets/js/main.js');
   wp_enqueue_style('style', get_bloginfo('stylesheet_url'));
   wp_enqueue_style('normalize', get_template_directory_uri() . '/assets/css/normalize.css');
@@ -176,12 +177,7 @@ function vhr_related_posts(){
   $tags = wp_get_post_tags($post->ID);
 
   if($tags){
-    ?>
-    <div class="post-related">
-      <div class="post-box">
-        <h4 class="post-box-title">Você também pode gostar</h4>
-      </div>
-    <?php
+
     $tags_ids = array();
     foreach($tags as $individual_tags){
       $tags_ids[] = $individual_tags->term_id;
@@ -196,6 +192,15 @@ function vhr_related_posts(){
     );
 
     $my_related = new WP_Query($args);
+
+    if($my_related->found_posts > 0){
+    ?>
+    <div class="post-related">
+      <div class="post-box">
+        <h4 class="post-box-title">Você também pode gostar</h4>
+      </div>
+    <?php
+    }
 
     while($my_related->have_posts()){
       $my_related->the_post();
@@ -219,6 +224,10 @@ function vhr_related_posts(){
 function vhr_post_author(){
   global $post;
 
+  if(is_page()){
+      return $post;
+  }
+
   ?>
   <div class="post-author">
     <div class="author-img">
@@ -237,7 +246,7 @@ function vhr_share_links(){
   $title = urlencode(get_the_title($post->ID));
   ?>
     <span class="share-text">Compartilhe:</span>
-    <a href="https://www.facebook.com/sharer/sharer.php?u=<?=get_the_permalink($post->ID)?>" target="_blank" class="facebook"></a>
+    <?php echo fb_like_button(); ?>
     <a href="http://pinterest.com/pin/create/button/?url=<?=get_the_permalink($post->ID)?>&description=<?=$title?>" class="pinterest"></a>
     <a href="http://twitter.com/share?text=<?=$title?>&url=<?=get_the_permalink($post->ID)?>" class="twitter"></a>
   <?php
@@ -256,3 +265,33 @@ function vhr_post_tags(){
     <?php
   }
 }
+
+//Adding the Open Graph in the Language Attributes
+function add_opengraph_doctype( $output ) {
+		return $output . ' xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"';
+}
+add_filter('language_attributes', 'add_opengraph_doctype');
+
+//Lets add Open Graph Meta Info
+
+function insert_fb_in_head() {
+	global $post;
+	if ( !is_singular()) //if it is not a post or a page
+		return;
+        echo '<meta property="fb:admins" content="100000514697944"/>';
+        echo '<meta property="og:title" content="' . get_the_title() . '"/>';
+        echo '<meta property="og:type" content="article"/>';
+        echo '<meta property="og:url" content="' . get_permalink() . '"/>';
+        echo '<meta property="og:site_name" content="' . get_bloginfo("name") . '"/>';
+	if(!has_post_thumbnail( $post->ID )) { //the post does not have featured image, use a default image
+		$default_image="http://example.com/image.jpg"; //replace this with a default image on your server or an image in your media library
+		echo '<meta property="og:image" content="' . $default_image . '"/>';
+	}
+	else{
+		$thumbnail_src = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'medium' );
+		echo '<meta property="og:image" content="' . esc_attr( $thumbnail_src[0] ) . '"/>';
+	}
+	echo "
+";
+}
+add_action( 'wp_head', 'insert_fb_in_head', 5 );

@@ -4,8 +4,9 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="<?php bloginfo('description'); ?>" />
 	<title><?php wp_title() ?></title>
-  <?php wp_head() ?>
+    <?php wp_head() ?>
 </head>
 <body <?php body_class() ?>>
 	<div class="container-topo">
@@ -41,7 +42,7 @@
 						<a href="javascript:void(0);" class="menu-action">
 							<i class="fa fa-bars" aria-hidden="true"></i>
 						</a>
-						<a href="#" class="search-action">
+						<a href="javascript:void(0);" class="search-action">
 							<i class="fa fa-search search-desktop" aria-hidden="true"></i>
 						</a>
 					</div>

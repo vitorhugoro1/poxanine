@@ -7,7 +7,6 @@
  */
 
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans|Lato|Playfair+Display');
-@import url('css/font-awesome.min.css');
 
 /**
  * Fixes
@@ -15,10 +14,10 @@
 
 body {
   font-family: 'Playfair Display', serif;
-  font-size: 13px;
+  font-size: 16px;
 }
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Josefin Sans";
+  font-family: "Josefin Sans", sans-serif;
 }
 a {
   text-decoration: none;
@@ -42,7 +41,7 @@ span.required {
   display: block;
 }
 .more-button {
-  font-size: 10px;
+  font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 2px;
   color: #000;
@@ -152,7 +151,7 @@ span.required {
   font-size: 11px;
   font-family: "Lato", sans-serif;
 }
-.menu-item a:hover {
+.menu-item:hover a {
   transition: .7s;
   color: #1EAEDB;
 }
@@ -217,15 +216,7 @@ span.required {
   text-align: center;
   margin-bottom: 25px;
 }
-.post-header .cat a {
-  text-transform: uppercase;
-  font-size: 10px;
-  margin: 0 4px 12px 7px;
-  padding-bottom: 1px;
-  border-bottom: 1px solid;
-  border-bottom-color: #1EAEDB;
-}
-.post-header h2 {
+.post-header h1 {
   margin: 1rem 0;
   display: block;
   text-align: center;
@@ -235,7 +226,7 @@ span.required {
   line-height: 1em;
   font-family: 'Josefin Sans', sans-serif;
 }
-.post-header h2 a {
+.post-header h1 a {
   display: block;
   text-align: center;
   font-weight: bold;
@@ -245,19 +236,21 @@ span.required {
   line-height: 1em;
   font-family: 'Josefin Sans', sans-serif;
 }
-.grid-item {
-  margin-bottom: 40px;
-}
-.grid-item .post-header h2 a {
-  font-size: 22px;
-}
-.post-header h2 a:hover {
+.post-header h1 a:hover {
   transition: .7s;
   opacity: .60;
 }
+.post-header .cat a {
+  text-transform: uppercase;
+  margin: 0 auto;
+}
+.post-header h4 {
+  font-size: 13px;
+  font-weight:800;
+  color: #888888;
+  text-transform: uppercase;
+}
 .post-header .date {
-  font-size: 11px;
-  font-style: italic;
   color: #888;
 }
 .post-img {
@@ -293,6 +286,12 @@ span.required {
   text-align: center;
   float: right;
   font-size: 13px;
+}
+.twitter-share-button {
+  vertical-align: bottom;
+}
+.instagram-media.instagram-media-rendered {
+  margin: 0 auto !important;
 }
 .share-text {
   margin-right: 2px;
@@ -350,8 +349,7 @@ span.required {
 }
 .post-entry blockquote {
   padding: 0 18px;
-  border-left: 3px solid;
-  border-left-color: #1EAEDB;
+  border-left: 3px solid #1EAEDB;
   margin: 0;
 }
 .post-entry blockquote p {
@@ -359,7 +357,7 @@ span.required {
   font-style: italic;
   line-height: 28px;
   color: #424242;
-  font-family: "Georgia";
+  font-family: "Georgia", sans-serif;
 }
 .item-related {
   width: 260px;
@@ -377,7 +375,7 @@ span.required {
 .item-related h3 a {
   font-size: 14px;
   color: #424242;
-  font-family: 'Lato';
+  font-family: 'Lato', sans-serif;
 }
 .item-related span.date {
   font-size: 11px;
@@ -386,6 +384,12 @@ span.required {
 }
 .item-related:last-child {
   margin-right: 0;
+}
+.grid-item {
+  margin-bottom: 40px;
+}
+.grid-item .post-header h1 a {
+  font-size: 22px;
 }
 
 /**

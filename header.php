@@ -29,7 +29,7 @@
 						?>
 						<div class="top-search">
 							<form id="searchform" action="<?=home_url()?>" method="get">
-								<input type="text" value="<?php the_search_query() ?>" placeholder="Digite e aperte enter..." name="s" id="s" />
+								<input type="text" value="<?php the_search_query() ?>" placeholder="Digite e aperte enter..." name="s" id="s" style="font-size:70%;"/>
 								<i class="fa fa-search search-desktop"></i>
 							</form>
 						</div>

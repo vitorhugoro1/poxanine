@@ -7,11 +7,10 @@
         <?php $first = true; ?>
       	<?php while (have_posts()) : the_post(); ?>
           <article id="post-<?php the_ID() ?>" <?php post_class( '' ) ?>>
-            <div class="post-header">
-              <span class="cat"><?php the_category(' ') ?></span>
-              <h2><?php the_title() ?></h2>
-              <span class="date"><?php the_date() ?></span>
-            </div>
+              <div class="post-header">
+                  <h1><?php the_title() ?></h1>
+                  <h4> Em <span class="cat"><?php the_category(' ')?></span> · <span class="date"><?php the_date('d M Y') ?></span></h4>
+              </div>
             <?php if(has_post_thumbnail()) : ?>
               <div class="post-img">
                   <a href="<?php the_permalink() ?>">

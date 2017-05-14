@@ -59,20 +59,7 @@ function vhr_register_required_plugins() {
       'name'      => 'Contact Form 7',
       'slug'      => 'contact-form-7',
       'required'  => true
-    ),
-
-		// WP Like Button
-		array(
-			'name'  => 'WP Like Button',
-			'slug'  => 'wp-like-button',
-			'required'  => true
-		),
-
-		array(
-			'name'  => 'WP Tweet Plus',
-			'slug'  => 'wp-tweet-plus',
-			'required'  => true
-		),
+    )
 	);
 
 	/*

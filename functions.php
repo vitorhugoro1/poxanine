@@ -128,6 +128,7 @@ function vhr_comment_list($comment, $args, $depth){
 }
 
 add_action('pre_get_posts', 'vhr_query_offset', 1 );
+
 function vhr_query_offset(&$query) {
 
     if(! $query->is_main_query()){
@@ -152,6 +153,7 @@ function vhr_query_offset(&$query) {
 }
 
 add_filter('found_posts', 'vhr_adjust_offset_pagination', 1, 2 );
+
 function vhr_adjust_offset_pagination($found_posts, $query) {
 
     $fp = 5;
@@ -246,9 +248,8 @@ function vhr_share_links(){
   $title = urlencode(get_the_title($post->ID));
   ?>
     <span class="share-text">Compartilhe:</span>
-    <?php echo fb_like_button(); ?>
-    <a href="http://pinterest.com/pin/create/button/?url=<?=get_the_permalink($post->ID)?>&description=<?=$title?>" class="pinterest"></a>
-    <a href="http://twitter.com/share?text=<?=$title?>&url=<?=get_the_permalink($post->ID)?>" class="twitter"></a>
+    <div class="fb-like" data-href="<?=get_permalink($post->ID)?>" data-layout="button" data-action="like" data-size="small" data-show-faces="false"></div>
+    <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
   <?php
 }
 
@@ -276,22 +277,43 @@ add_filter('language_attributes', 'add_opengraph_doctype');
 
 function insert_fb_in_head() {
 	global $post;
-	if ( !is_singular()) //if it is not a post or a page
+	if ( !is_singular() ) //if it is not a post or a page
 		return;
-        echo '<meta property="fb:admins" content="100000514697944"/>';
-        echo '<meta property="og:title" content="' . get_the_title() . '"/>';
-        echo '<meta property="og:type" content="article"/>';
-        echo '<meta property="og:url" content="' . get_permalink() . '"/>';
-        echo '<meta property="og:site_name" content="' . get_bloginfo("name") . '"/>';
-	if(!has_post_thumbnail( $post->ID )) { //the post does not have featured image, use a default image
-		$default_image="http://example.com/image.jpg"; //replace this with a default image on your server or an image in your media library
-		echo '<meta property="og:image" content="' . $default_image . '"/>';
-	}
-	else{
-		$thumbnail_src = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'medium' );
-		echo '<meta property="og:image" content="' . esc_attr( $thumbnail_src[0] ) . '"/>';
-	}
-	echo "
-";
+
+    echo '<meta property="fb:admins" content="100000514697944"/>';
+    echo '<meta property="og:title" content="' . get_the_title() . '"/>';
+    echo '<meta property="og:type" content="article"/>';
+    echo '<meta property="og:url" content="' . get_permalink() . '"/>';
+    echo '<meta property="og:site_name" content="' . get_bloginfo("name") . '"/>';
+    echo '<meta property="og:description"   content="' . get_the_excerpt() . '" />';
+    if(!has_post_thumbnail( $post->ID )) { //the post does not have featured image, use a default image
+        $default_image="http://example.com/image.jpg"; //replace this with a default image on your server or an image in your media library
+        echo '<meta property="og:image" content="' . $default_image . '"/>';
+    } else {
+        $thumbnail_src = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'medium' );
+        echo '<meta property="og:image" content="' . esc_attr( $thumbnail_src[0] ) . '"/>';
+    }
 }
 add_action( 'wp_head', 'insert_fb_in_head', 5 );
+
+function fb_like_button_footer(){
+    ?>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.9&appId=1475751812723202";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    <?php
+}
+add_action('wp_footer', 'fb_like_button_footer');
+
+function twitter_js_async(){
+    ?>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    <?php
+}
+
+add_action('wp_footer', 'twitter_js_async');

@@ -317,3 +317,37 @@ function twitter_js_async(){
 }
 
 add_action('wp_footer', 'twitter_js_async');
+
+add_action(
+    'intermediate_image_sizes_advanced',
+    'wpse162413_unset_sizes_if_gif'
+);
+function wpse162413_unset_sizes_if_gif( $sizes ) {
+    // we're only having the sizes available
+    // we're using debug_backtrace to get additional information
+    $dbg_back = debug_backtrace();
+    // scan $dbg_back array for function and get $args
+    foreach ( $dbg_back as $sub ) {
+        if ( $sub[ 'function'] == 'wp_generate_attachment_metadata' ) {
+            $args = $sub[ 'args' ];
+        }
+    }
+    // attachment id
+    $att_id       = $args[0];
+    // attachment path
+    $att_path     = $args[1];
+    // split up file information
+    $pathinfo = pathinfo( $att_path );
+    // if extension is gif unset sizes
+    if ( $pathinfo[ 'extension' ] == 'gif' ) {
+        // get all intermediate sizes
+        $intermediate_image_sizes = get_intermediate_image_sizes();
+        // loop trough the intermediate sizes array
+        foreach ( $intermediate_image_sizes as $size ) {
+            // unset the size in the sizes array
+            unset( $sizes[ $size ] );
+        }
+    }
+    // return sizes
+    return $sizes;
+}

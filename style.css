@@ -33,7 +33,7 @@ span.required {
   color: #eee;
 }
 .post-entry img {
-  width: auto;
+  max-width: 100%;
   height: auto;
 }
 .more-link {

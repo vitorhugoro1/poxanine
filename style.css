@@ -33,7 +33,7 @@ span.required {
   color: #eee;
 }
 .post-entry img {
-  width: 100%;
+  width: auto;
   height: auto;
 }
 .more-link {
@@ -676,11 +676,11 @@ em.comment-awaiting-moderation {
   * Compartilhar
   */
 
-.facebook:before {
-  content: '\f09a';
-  font-family: 'FontAwesome';
-  margin-right: 3px;
-}
+/*.facebook:before {*/
+  /*content: '\f09a';*/
+  /*font-family: 'FontAwesome';*/
+  /*margin-right: 3px;*/
+/*}*/
 .facebook {
   color: #1EAEDB;
   /*background: #3b5998;*/
@@ -690,11 +690,11 @@ em.comment-awaiting-moderation {
   font-weight: bold;
   padding: 2px 5px;
 }
-.twitter:before {
-  content: '\f099';
-  font-family: 'FontAwesome';
-  margin-right: 3px;
-}
+/*.twitter:before {*/
+  /*content: '\f099';*/
+  /*font-family: 'FontAwesome';*/
+  /*margin-right: 3px;*/
+/*}*/
 .twitter {
   color: #1EAEDB;
   /*background: #1da1f2;*/
@@ -704,11 +704,11 @@ em.comment-awaiting-moderation {
   font-weight: bold;
   padding: 2px 5px;
 }
-.pinterest:before {
-  content: '\f231';
-  font-family: 'FontAwesome';
-  margin-right: 3px;
-}
+/*.pinterest:before {*/
+  /*content: '\f231';*/
+  /*font-family: 'FontAwesome';*/
+  /*margin-right: 3px;*/
+/*}*/
 .pinterest {
   color: #1EAEDB;
   /*background: #bd081c;*/

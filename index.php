@@ -21,13 +21,6 @@
                       <h1><a href="<?php the_permalink() ?>"><?php the_title() ?></a></h1>
                       <h4>Em <span class="cat"><?php the_category(' ') ?></span> · <span class="date"><?php the_date('d M Y') ?></span></h4>
                   </div>
-                <?php if(has_post_thumbnail()) : ?>
-                  <div class="post-img">
-                      <a href="<?php the_permalink() ?>">
-                        <?php the_post_thumbnail( 'full' ) ?>
-                      </a>
-                  </div>
-                <?php endif; ?>
                 <div class="post-entry">
                   <?php the_content('<span class="more-button">Continue lendo</span>', true) ?>
                 </div>

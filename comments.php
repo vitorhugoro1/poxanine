@@ -10,26 +10,25 @@
 	}
 ?>
 
+<?php if (comments_open()) : ?>
 	<div class="post-box">
 		<h3 class="post-box-title"><?php comments_number('Sem Comentários', '1 Comentário', '% Comentários' );?></h3>
 	</div>
+<?php endif; ?>
 
-	<?php if ( have_comments() ) : ?>
+<?php if ( have_comments() && comments_open() ) : ?>
+<ol class="comments-list">
+  <?php wp_list_comments([
+    'avatar_size' => 32,
+    'reply_text'  => 'Responder',
+    'type'				=> 'comment',
+    'per_page'    => -1,
+    'callback'    => 'vhr_comment_list'
+  ]); ?>
+</ol>
+<?php endif; ?>
 
-		<ol class="comments-list">
-		<?php wp_list_comments(array(
-      'avatar_size' => 32,
-      'reply_text'  => 'Responder',
-			'type'				=> 'comment',
-      'per_page'    => -1,
-      'callback'    => 'vhr_comment_list'
-    )); ?>
-    </ol>
-
-	<?php endif; ?>
-
-	<?php if ( comments_open() ) : ?>
-
+<?php if ( comments_open() ) : ?>
 	<div id="respond" class="comment-respond">
 		<h3 class="comment-reply-title">Deixe um comentário <small><?php cancel_comment_reply_link( 'Cancelar' ) ?></small></h3>
 		<form action="<?php echo get_option('siteurl'); ?>/wp-comments-post.php" method="post" id="commentform" class="comment-form">

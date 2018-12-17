@@ -22,7 +22,11 @@
               <?php the_content() ?>
             </div>
             <div class="post-meta">
-              <div class="meta-comments"><a href="<?php comments_link() ?>"><?php comments_number('0 Comentários', '1 Comentário', '% Comentários' );?></a></div>
+              <div class="meta-comments">
+                <?php if (comments_open()) : ?>
+                  <a href="<?php comments_link() ?>"><?php comments_number('0 Comentários', '1 Comentário', '% Comentários'); ?></a>
+                <?php endif; ?>
+              </div>
               <div class="meta-share">
                 <?php vhr_share_links() ?>
               </div>

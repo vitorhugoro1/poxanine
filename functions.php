@@ -36,6 +36,16 @@ function vhr_register_menu(){
 
 add_action( 'init', 'vhr_register_menu' );
 
+add_filter('document_title_separator', 'poxanine_blog_title_separator');
+
+function poxanine_blog_title_separator($sep) {
+  if (is_home()) {
+    $sep = "";
+  }
+
+  return $sep;
+}
+
 function vhr_paginate(){
   global $wp_query;
   $current = max( 1, absint( get_query_var( 'paged' ) ) );

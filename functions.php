@@ -14,7 +14,6 @@ add_theme_support( 'automatic-feed-links' );
 
 function vhr_scripts_load(){
   wp_enqueue_script('jquery');
-  wp_enqueue_script('mobile', get_template_directory_uri() . '/assets/js/mobile.js');
   wp_enqueue_script('main', get_template_directory_uri() . '/assets/js/main.js');
   wp_enqueue_style('style', get_bloginfo('stylesheet_url'));
   wp_enqueue_style('normalize', get_template_directory_uri() . '/assets/css/normalize.css');
@@ -67,7 +66,7 @@ function vhr_paginate(){
             if ( strpos( $page_link, 'current' ) !== false ) :
            ?>
             <li class="pagination-item">
-              <a href="<?php echo $_SERVER[REQUEST_URI]; ?>" class="pagination-link active"><?php echo $current; ?></a>
+              <a href="<?php echo $_SERVER['REQUEST_URI']; ?>" class="pagination-link active"><?php echo $current; ?></a>
             </li>
           <?php else:
             $dom = new DomDocument();
